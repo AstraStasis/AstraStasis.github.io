@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LycoEdits Portfolio</title>
+    <title>AndreiG Portfolio</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome for social media icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <header>
-        <h1>LycoEdits</h1>
+        <h1>AndreiG</h1>
         <nav>
             <ul>
                 <li><a href="#">Home</a></li>
@@ -18,29 +20,71 @@
         </nav>
     </header>
 
+    <!-- Hero Section -->
     <section class="hero">
         <div>
-            <h2>Welcome to LycoEdits</h2>
-            <p>Professional video editing services to bring your vision to life. Explore my works below.</p>
+            <h2>Welcome to my Portfolio!</h2>
+            <p>Professional video editing services. Explore my works below.</p>
         </div>
     </section>
 
+    <!-- Portfolio Section -->
     <section id="portfolio" class="portfolio">
         <h3>My Works</h3>
-        <div class="portfolio-grid">
-            <!-- Add more portfolio items as needed -->
-            <div class="portfolio-item">
-                <!-- Replace "video1.mp4" with your video file -->
-                <video controls>
-                    <source src="video1.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+
+        <!-- Dance Video Category -->
+        <div class="portfolio-category">
+            <h4>Dance Videos</h4>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <iframe src="https://www.youtube.com/embed/VIDEO_ID1" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="portfolio-item">
+                    <iframe src="https://www.youtube.com/embed/VIDEO_ID2" frameborder="0" allowfullscreen></iframe>
+                </div>
             </div>
-            <div class="portfolio-item">
-                <video controls>
-                    <source src="video2.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+        </div>
+
+        <!-- Logo Reveal Animation Category -->
+        <div class="portfolio-category">
+            <h4>Logo Reveal Animations</h4>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <iframe src="https://www.youtube.com/embed/VIDEO_ID3" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="portfolio-item">
+                    <iframe src="https://www.youtube.com/embed/VIDEO_ID4" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- Commentary/Informative Category -->
+        <div class="portfolio-category">
+            <h4>Commentary / Informative</h4>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <iframe src="https://www.youtube.com/embed/VIDEO_ID5" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="portfolio-item">
+                    <iframe src="https://www.youtube.com/embed/VIDEO_ID6" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h3>Contact Me</h3>
+        <p>Let's connect through my social media accounts below!</p>
+        <div class="social-links">
+            <a href="https://www.facebook.com/andreiG7777/" target="_blank" class="social-btn">
+                <i class="fab fa-facebook-f"></i> Facebook
+            </a>
+            <a href="https://x.com/AndreiG_17" target="_blank" class="social-btn">
+                <i class="fab fa-twitter"></i> Twitter
+            </a>
+            <div class="social-btn viber-btn">
+                <i class="fab fa-viber"></i> +639939241678
             </div>
         </div>
     </section>

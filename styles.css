@@ -48,6 +48,7 @@ nav ul li a:hover {
     color: #f9d342;
 }
 
+/* Hero Section */
 .hero {
     height: 100vh;
     display: flex;
@@ -70,6 +71,8 @@ nav ul li a:hover {
     animation: fadeInUp 1s;
 }
 
+/* Portfolio Section */
+/* Portfolio Section */
 .portfolio {
     padding: 2rem;
 }
@@ -79,6 +82,17 @@ nav ul li a:hover {
     margin-bottom: 2rem;
     font-size: 2rem;
     color: #f9d342;
+}
+
+.portfolio-category {
+    margin-bottom: 3rem;
+}
+
+.portfolio-category h4 {
+    font-size: 1.8rem;
+    color: #f9d342;
+    text-align: center;
+    margin-bottom: 1rem;
 }
 
 .portfolio-grid {
@@ -99,11 +113,73 @@ nav ul li a:hover {
     transform: scale(1.05);
 }
 
-.portfolio-item video {
+.portfolio-item iframe {
     width: 100%;
+    height: 200px;
     border-radius: 5px;
 }
 
+/* Contact Section */
+.contact {
+    padding: 2rem;
+    background: #162447;
+}
+
+.contact h3 {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    color: #f9d342;
+}
+
+.contact p {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.2rem;
+}
+
+/* Social Buttons */
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.social-btn {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f9d342;
+    color: #162447;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.social-btn i {
+    margin-right: 10px;
+    font-size: 1.5rem;
+}
+
+/* Social Button Hover Effects */
+.social-btn:hover {
+    background-color: #1f4068;
+    color: #f9d342;
+}
+
+.viber-btn {
+    background-color: #25d366;
+    color: #fff;
+}
+
+.viber-btn:hover {
+    background-color: #1aaf5d;
+}
+
+/* Footer */
 footer {
     text-align: center;
     padding: 1rem;
@@ -112,6 +188,7 @@ footer {
     margin-top: 2rem;
 }
 
+/* Keyframes for Hero Section */
 @keyframes fadeInDown {
     from {
         opacity: 0;
