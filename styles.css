@@ -1,272 +1,396 @@
 /* RESET & BASE */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  html {
-    scroll-behavior: smooth;
-  }
-  
-  body {
-    font-family: 'Poppins', sans-serif;
-    line-height: 1.6;
-    background: #1a1a2e;
-    color: #fff;
-    overflow-x: hidden;
-  }
-  
-  /* HEADER */
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    background: linear-gradient(to bottom, #162447, transparent);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-  }
-  
-  header h1 {
-    font-size: 1.8rem;
-    color: #f9d342;
-    font-weight: 600;
-    transition: transform 0.3s ease;
-  }
-  
-  nav ul {
-    display: flex;
-    list-style: none;
-    gap: 1rem;
-  }
-  
-  nav ul li a {
-    text-decoration: none;
-    color: #fff;
-    padding: 0.5rem 1rem;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    border-radius: 4px;
-  }
-  
-  nav ul li a:hover {
-    background-color: #f9d342;
-    color: #162447;
-  }
-  
-  /* HERO SECTION */
-  .hero {
-    height: 100vh;
-    display: flex;
-    overflow: hidden;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background: linear-gradient(to bottom, rgba(22, 36, 71, 0.5), #1a1a2e);
-    background-position: top center;
-    position: relative;
-    margin-top: -4rem;
-  }
-  
-  /* Particles container fills the hero area */
-  #particles-js {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: -2;
-  }
-  
-  /* Adobe After Effects Logo styling */
-  #aftereffects-logo {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    width: 80px;
-    z-index: -1;
-    transition: transform 0.2s ease-out;
-  }
-  
-  #aftereffects-logo img {
-    width: 100%;
-    display: block;
-  }
-  
-  /* Reveal Animation for Hero Text */
-  .hero-title {
-    font-family: 'Bebas Neue', cursive;
-    font-size: 3.5rem;
-    margin-bottom: 1rem;
-    font-weight: 400;
-    letter-spacing: 2px;
-    opacity: 0;
-    transform: translateX(-50px);
-    animation: revealText 1s ease-out forwards 0.3s;
-  }
-  
-  .hero-subtitle {
-    font-size: 1.2rem;
-    max-width: 700px;
-    margin: 0 auto;
-    font-weight: 300;
-    opacity: 0;
-    transform: translateX(-50px);
-    animation: revealText 1s ease-out forwards 0.5s;
-  }
-  
-  @keyframes revealText {
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-  
-  /* PORTFOLIO SECTION */
-  .portfolio {
-    padding: 2rem;
-  }
-  
-  .portfolio h3 {
-    text-align: center;
-    margin-bottom: 2rem;
-    font-size: 2.2rem;
-    color: #f9d342;
-    font-weight: 600;
-  }
-  
-  /* Animate portfolio-category on scroll */
-  .portfolio-category {
-    margin-bottom: 3rem;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s ease;
-  }
-  
-  .portfolio-category.in-view {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+  background: #1a1a2e; 
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* HEADER REVEAL ANIMATION */
+header h1,
+header nav ul li a {
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: headerReveal 1s forwards;
+}
+
+header h1 {
+  animation-delay: 0.2s;
+}
+header nav ul li a:nth-child(1) {
+  animation-delay: 0.4s;
+}
+header nav ul li a:nth-child(2) {
+  animation-delay: 0.6s;
+}
+header nav ul li a:nth-child(3) {
+  animation-delay: 0.8s;
+}
+
+@keyframes headerReveal {
+  to {
     opacity: 1;
     transform: translateY(0);
   }
-  
-  .portfolio-category h4 {
-    font-size: 1.6rem;
-    color: #f9d342;
-    text-align: center;
-    margin-bottom: 1rem;
-    font-weight: 500;
-  }
-  
-  .portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-  }
-  
-  /* PORTFOLIO ITEM */
-  .portfolio-item {
-    position: relative;
-    padding-top: 56.25%;
-    background: #162447;
-    border-radius: 5px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .portfolio-item iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-  }
-  
-  .portfolio-item:hover {
-    transform: scale(1.02);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
-  }
-  
-  /* CONTACT SECTION */
-  .contact {
-    padding: 2rem;
-    background: #162447;
-    background: linear-gradient(transparent, #162447, transparent);
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s ease;
-  }
-  
-  .contact.in-view {
+}
+
+/* HEADER */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: linear-gradient(to bottom, #162447, transparent);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+header h1 {
+  font-size: 1.5rem;
+  color: #f9d342;
+  font-weight: 600;
+  transition: transform 0.3s ease;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 1rem;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border-radius: 4px;
+}
+
+nav ul li a:hover {
+  background-color: #f9d342;
+  color: #162447;
+}
+
+/* HERO SECTION */
+.hero {
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(to bottom, rgba(22,36,71,0.5), #1a1a2e);
+  background-position: top center;
+  position: relative;
+  margin-top: -4rem;
+}
+
+#particles-js {
+  position: absolute;
+  transition: transform 0.5s ease-out;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -2;
+}
+
+/* Floating Logos (unchanged) */
+#capcut-logo,
+#davinci-logo,
+#premiere-logo,
+#aftereffects-logo {
+  position: absolute;
+  bottom: 20px;
+  width: 80px;
+  z-index: -1;
+  transition: transform 0.5s ease-out;
+}
+
+/* Left side logos */
+#capcut-logo {
+  left: 20px;
+}
+#davinci-logo {
+  left: 120px;
+}
+
+/* Right side logos */
+#premiere-logo {
+  right: 120px;
+}
+#aftereffects-logo {
+  right: 20px;
+}
+
+/* Hero Text */
+.hero-title {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  font-weight: 400;
+  letter-spacing: 2px;
+  opacity: 0;
+  transform: translateX(-50px);
+  animation: revealText 1s ease-out forwards 0.3s;
+  color: #fff;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto;
+  font-weight: 300;
+  opacity: 0;
+  transform: translateX(-50px);
+  animation: revealText 1s ease-out forwards 0.5s;
+  color: #fff;
+}
+
+@keyframes revealText {
+  to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(0);
   }
-  
-  .contact h3 {
-    text-align: center;
-    margin-bottom: 1rem;
-    font-size: 2rem;
-    color: #f9d342;
-    font-weight: 600;
-  }
-  
-  .contact p {
-    text-align: center;
-    margin-bottom: 2rem;
-    font-size: 1.2rem;
-    font-weight: 300;
-  }
-  
-  /* SOCIAL BUTTONS */
-  .social-links {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-  }
-  
-  .social-btn {
-    display: flex;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #f9d342;
-    color: #162447;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 1rem;
-    font-weight: 600;
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-  
-  .social-btn i {
-    margin-right: 10px;
-    font-size: 1.5rem;
-  }
-  
-  .social-btn:hover {
-    background-color: #1f4068;
-    color: #f9d342;
-  }
-  
-  .viber-btn {
-    background-color: #25d366;
-    color: #fff;
-  }
-  
-  .viber-btn:hover {
-    background-color: #1aaf5d;
-  }
-  
-  /* FOOTER */
-  footer {
-    text-align: center;
-    padding: 1rem;
-    background: #162447;
-    background: linear-gradient(to top, #162447, transparent);
-    color: #fff;
-    margin-top: 2rem;
-    font-size: 0.9rem;
-    opacity: 0.8;
-  }
-  
+}
+
+/* PORTFOLIO SECTION */
+.portfolio {
+  position: relative;
+  padding: 2rem 0; 
+  width: 100%; 
+}
+
+.portfolio-bg-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.portfolio-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image:
+    radial-gradient(circle, rgba(249,211,66,0.25) 1px, transparent 1px),
+    radial-gradient(circle, rgba(249,211,66,0.25) 1px, transparent 1px);
+  background-position: 0 0, 75px 75px;
+  background-size: 150px 150px;
+  animation: bgAnimation 10s linear infinite;
+  opacity: 2.0;
+}
+
+@keyframes bgAnimation {
+  0% { transform: translate(0px, 0px); }
+  100% { transform: translate(50px, 50px); }
+}
+
+.portfolio h3 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2.2rem;
+  color: #f9d342;
+  font-weight: 600;
+}
+
+.portfolio-category {
+  margin-bottom: 3rem;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.portfolio-category.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.portfolio-category h4 {
+  font-size: 1.6rem;
+  color: #f9d342;
+  text-align: center;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+/* CAROUSEL (3-Item Overlap) */
+.carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.carousel-track {
+  position: relative;
+  width: 100%;
+  height: 420px;
+}
+
+.carousel-item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 600px;
+  height: 350px;
+  transform: translate(-50%, -50%) scale(0.9);
+  opacity: 0;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.carousel-item iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.carousel-item.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+/* Active (Center) item */
+.carousel-item.active {
+  transform: translate(-50%, -50%) scale(1.2);
+  opacity: 1;
+  z-index: 2;
+  pointer-events: auto;
+}
+
+/* Left item */
+.carousel-item.left {
+  transform: translate(-50%, -50%) translateX(-350px) scale(0.9);
+  opacity: 0.7;
+  z-index: 1;
+}
+
+/* Right item */
+.carousel-item.right {
+  transform: translate(-50%, -50%) translateX(350px) scale(0.9);
+  opacity: 0.7;
+  z-index: 1;
+}
+
+.carousel-item:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* Arrows positioned near the center video */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #f9d342;
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 5;
+  transition: color 0.3s ease;
+}
+
+.arrow.left {
+  left: 14%;
+}
+
+.arrow.right {
+  right: 14%;
+}
+
+.arrow:hover {
+  color: #fff;
+}
+
+/* CONTACT SECTION - Overhauled */
+.contact {
+  padding: 3rem 1rem;
+  background: linear-gradient(135deg, #162447, #1f4068);
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.contact.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.contact h3 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: #f9d342;
+  font-weight: 700;
+}
+
+.contact p {
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+  color: #fff;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.social-btn {
+  display: inline-flex; 
+  align-items: center;
+  padding: 0.8rem 1.2rem;
+  background-color: #f9d342;
+  color: #162447;
+  border-radius: 30px;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+.social-btn i {
+  margin-right: 15px; /* Increased from 10px to 15px */
+  font-size: 1.5rem;
+}
+
+
+.social-btn:hover {
+  background-color: #fff;
+  color: #162447;
+  transform: translateY(-3px);
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  background: linear-gradient(135deg, #162447, #1f4068);
+  color: #fff;
+  margin-top: 2rem;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  border-top: 2px solid rgba(249,211,66,0.5);
+  transition: background 0.5s ease;
+}
+
