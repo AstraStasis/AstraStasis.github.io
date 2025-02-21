@@ -1,41 +1,50 @@
 // Global variable for vertical scroll offset
 let scrollOffset = 0;
-// Flag to indicate if scrolling is happening
+// Flag to indicate if scrolling is active
 let isScrolling = false;
-let scrollTimeout;
+let scrollTimeout = null;
 
-// Global variables to store the last computed horizontal offsets from mousemove
+// Global variables to store latest horizontal offsets from mousemove
 let currentLogoX = 0, currentLogoY = 0;
 let currentStarX = 0, currentStarY = 0;
 
 document.addEventListener('DOMContentLoaded', function () {
-  // 1. Initialize particles.js for the star background
-  particlesJS("particles-js", {
-    "particles": {
-      "number": { "value": 150, "density": { "enable": true, "value_area": 800 } },
-      "color": { "value": "#ffffff" },
-      "shape": { "type": "star", "polygon": { "nb_sides": 5 } },
-      "opacity": { "value": 0.8 },
-      "size": { "value": 4, "random": true },
-      "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.4, "width": 1 },
-      "move": { "enable": true, "speed": 2, "direction": "none", "out_mode": "out" }
-    },
-    "interactivity": {
-      "detect_on": "canvas",
-      "events": {
-        "onhover": { "enable": true, "mode": "repulse" },
-        "onclick": { "enable": true, "mode": "push" },
-        "resize": true
+  // 1. Function to initialize particles with a given color
+  function initParticles(particleColor) {
+    if (window.pJSDom && window.pJSDom.length) {
+      window.pJSDom[0].pJS.fn.vendors.destroypJS();
+      window.pJSDom = [];
+    }
+    particlesJS("particles-js", {
+      "particles": {
+        "number": { "value": 150, "density": { "enable": true, "value_area": 800 } },
+        "color": { "value": particleColor },
+        "shape": { "type": "star", "polygon": { "nb_sides": 5 } },
+        "opacity": { "value": 0.8 },
+        "size": { "value": 4, "random": true },
+        "line_linked": { "enable": true, "distance": 150, "color": particleColor, "opacity": 0.4, "width": 1 },
+        "move": { "enable": true, "speed": 2, "direction": "none", "out_mode": "out" }
       },
-      "modes": {
-        "repulse": { "distance": 150, "duration": 0.4 },
-        "push": { "particles_nb": 4 }
-      }
-    },
-    "retina_detect": true
-  });
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": { "enable": true, "mode": "repulse" },
+          "onclick": { "enable": true, "mode": "push" },
+          "resize": true
+        },
+        "modes": {
+          "repulse": { "distance": 150, "duration": 0.4 },
+          "push": { "particles_nb": 4 }
+        }
+      },
+      "retina_detect": true
+    });
+  }
+  
+  // 2. Initialize particles with default dark mode color (white)
+  initParticles("#ffffff");
 
-  // 2. Intersection Observer for reveal animations (unchanged)
+  // 3. Intersection Observer for reveal animations (unchanged)
   const animatedElements = document.querySelectorAll('.animate-on-scroll');
   const observerOptions = { threshold: 0.1 };
   const observer = new IntersectionObserver((entries, obs) => {
@@ -48,10 +57,9 @@ document.addEventListener('DOMContentLoaded', function () {
   }, observerOptions);
   animatedElements.forEach(el => observer.observe(el));
 
-  // 3. Mousemove effect for floating logos and particles background
+  // 4. Mousemove effect for floating logos and particles background
   const heroSection = document.querySelector('.hero');
   const particlesEl = document.getElementById('particles-js');
-  // Gather all floating logos into an array
   const floatingLogos = [
     document.getElementById('capcut-logo'),
     document.getElementById('davinci-logo'),
@@ -62,7 +70,6 @@ document.addEventListener('DOMContentLoaded', function () {
   const starFactor = 0.03;
 
   heroSection.addEventListener('mousemove', function(e) {
-    // Only update if not scrolling
     if (isScrolling) return;
     
     const rect = heroSection.getBoundingClientRect();
@@ -71,38 +78,67 @@ document.addEventListener('DOMContentLoaded', function () {
     const offsetX = e.clientX - centerX;
     const offsetY = e.clientY - centerY;
     
-    // Compute and store the horizontal offsets
     currentLogoX = offsetX * logoFactor;
     currentLogoY = offsetY * logoFactor;
     currentStarX = offsetX * starFactor;
     currentStarY = offsetY * starFactor;
     
-    // Apply transforms to floating logos
     floatingLogos.forEach(logo => {
       logo.style.transform = `translate(${currentLogoX}px, ${currentLogoY}px)`;
     });
-    // Apply transform to particles background (vertical component remains from scroll)
     particlesEl.style.transform =
       `translateY(${scrollOffset * 0.3}px) translate(${currentStarX}px, ${currentStarY}px)`;
   });
 
-  // On mouse leave, animate logos and particles back to horizontal 0 offset (using CSS transitions)
   heroSection.addEventListener('mouseleave', function() {
     floatingLogos.forEach(logo => {
       logo.style.transform = 'translate(0, 0)';
       currentLogoX = 0;
       currentLogoY = 0;
     });
-    particlesEl.style.transform = `translateY(${scrollOffset * 0.3}px) translate(0, 0)`;
+    particlesEl.style.transform =
+      `translateY(${scrollOffset * 0.3}px) translate(0, 0)`;
     currentStarX = 0;
     currentStarY = 0;
   });
 
-  // 4. Initialize all carousels (unchanged)
+  // 5. Mode Toggle: Use sun/moon icon (light mode toggles class "light-mode" on body)
+  const modeToggleBtn = document.getElementById('mode-toggle');
+  modeToggleBtn.addEventListener('click', function() {
+    document.body.classList.toggle('light-mode');
+    if (document.body.classList.contains('light-mode')) {
+      modeToggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
+      initParticles("#000000"); // In light mode, use black particles
+    } else {
+      modeToggleBtn.innerHTML = '<i class="fas fa-moon"></i>';
+      initParticles("#ffffff");
+    }
+  });
+
+  // 6. Initialize carousels (3-item overlapping carousel remains unchanged)
   document.querySelectorAll('.carousel').forEach(carousel => initCarousel(carousel));
+
+  // 7. Split hero title text into individual letters for animation
+  splitText(".hero-title");
 });
 
-// 5. Carousel initialization (unchanged)
+// 8. Function to split text content of a selector into spans for each letter
+function splitText(selector) {
+  const element = document.querySelector(selector);
+  if (!element) return;
+  const text = element.textContent.trim();
+  element.textContent = "";
+  text.split("").forEach(letter => {
+    const span = document.createElement("span");
+    span.textContent = letter;
+    span.classList.add("letter");
+    // Add a random animation delay for each letter for a random reveal effect
+    span.style.animationDelay = (Math.random() * 0.8) + "s";
+    element.appendChild(span);
+  });
+}
+
+// 9. Carousel initialization function (unchanged)
 function initCarousel(carousel) {
   const track = carousel.querySelector('.carousel-track');
   const items = Array.from(track.querySelectorAll('.carousel-item'));
@@ -140,15 +176,13 @@ function initCarousel(carousel) {
   updatePositions();
 }
 
-// 6. On scroll, update vertical parallax and disable mouse-follow while scrolling
+// 10. On scroll, update vertical parallax and disable mouse-follow while scrolling
 window.addEventListener('scroll', function() {
   scrollOffset = window.scrollY;
-  // Set isScrolling flag and reset it after 200ms of no scroll events
   isScrolling = true;
   clearTimeout(scrollTimeout);
   scrollTimeout = setTimeout(() => { isScrolling = false; }, 200);
   
-  // Update particles background vertical component while preserving current horizontal offset
   document.getElementById('particles-js').style.transform =
     `translateY(${scrollOffset * 0.3}px) translate(${currentStarX}px, ${currentStarY}px)`;
   
