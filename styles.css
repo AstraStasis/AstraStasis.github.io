@@ -1,19 +1,24 @@
-/* General Reset */
+/* RESET & BASE */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-body {
-    font-family: 'Arial', sans-serif;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'Poppins', sans-serif;
     line-height: 1.6;
     background: #1a1a2e;
     color: #fff;
     overflow-x: hidden;
-}
-
-header {
+  }
+  
+  /* HEADER */
+  header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -22,164 +27,206 @@ header {
     position: sticky;
     top: 0;
     z-index: 1000;
-}
-
-header h1 {
-    font-size: 1.5rem;
+  }
+  
+  header h1 {
+    font-size: 1.8rem;
     color: #f9d342;
-}
-
-nav ul {
+    font-weight: 600;
+    transition: transform 0.3s ease;
+  }
+  
+  nav ul {
     display: flex;
     list-style: none;
-}
-
-nav ul li {
-    margin: 0 1rem;
-}
-
-nav ul li a {
+    gap: 1rem;
+  }
+  
+  nav ul li a {
     text-decoration: none;
     color: #fff;
-    transition: color 0.3s ease;
-}
-
-nav ul li a:hover {
-    color: #f9d342;
-}
-
-/* Hero Section */ 
-.hero { 
-    height: 100vh; 
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-radius: 4px;
+  }
+  
+  nav ul li a:hover {
+    background-color: #f9d342;
+    color: #162447;
+  }
+  
+  /* HERO SECTION */
+  .hero {
+    height: 100vh;
     display: flex;
     overflow: hidden;
-    justify-content: center; 
-    align-items: center; 
-    text-align: center; 
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     background: linear-gradient(to bottom, rgba(22, 36, 71, 0.5), #1a1a2e);
     background-position: top center;
+    position: relative;
     margin-top: -4rem;
-} 
-.hero-background { 
-    position: absolute; 
-    top: 0; 
-    left: 0; 
-    width: 100%; 
-    height: 100%; 
-    background: url('bg animation.gif') no-repeat top center; /* Ensure the image starts from the top */ 
-    background-size: cover; 
-    z-index: -1; 
-    transition: transform 0.5s ease; 
-}
-.hero-content { 
-    transition: transform 0.5s ease, font-size 0.5s ease; 
-} 
-.hero-title, .hero-subtitle { 
-    transition: transform 0.5s ease, font-size 0.5s ease; /* Ensure both elements transition together */ 
-} 
-.hero-title { 
-    font-size: 4rem; 
-    margin-bottom: 1rem; 
-    animation: fadeInDown 1s; 
-} 
-.hero-subtitle { 
-    font-size: 1.5rem; 
-    max-width: 700px; 
-    margin: 0 auto; 
-    animation: fadeInUp 1s; 
-} 
-body.scrolled .hero-title, body.scrolled .hero-subtitle { 
-    transform: scale(0.8); /* Adjust the scale value as needed */ 
-} 
-body.scrolled .hero-title { 
-    font-size: 2.4rem; /* Adjust the font size as needed */ 
-} 
-body.scrolled .hero-subtitle { 
-    font-size: 1rem; /* Adjust the font size as needed */ 
-}
-
-/* Portfolio Section */
-
-.portfolio {
+  }
+  
+  /* Particles container fills the hero area */
+  #particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -2;
+  }
+  
+  /* Adobe After Effects Logo styling */
+  #aftereffects-logo {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 80px;
+    z-index: -1;
+    transition: transform 0.2s ease-out;
+  }
+  
+  #aftereffects-logo img {
+    width: 100%;
+    display: block;
+  }
+  
+  /* Reveal Animation for Hero Text */
+  .hero-title {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    font-weight: 400;
+    letter-spacing: 2px;
+    opacity: 0;
+    transform: translateX(-50px);
+    animation: revealText 1s ease-out forwards 0.3s;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto;
+    font-weight: 300;
+    opacity: 0;
+    transform: translateX(-50px);
+    animation: revealText 1s ease-out forwards 0.5s;
+  }
+  
+  @keyframes revealText {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  /* PORTFOLIO SECTION */
+  .portfolio {
     padding: 2rem;
-}
-
-.portfolio h3 {
+  }
+  
+  .portfolio h3 {
     text-align: center;
     margin-bottom: 2rem;
-    font-size: 2rem;
+    font-size: 2.2rem;
     color: #f9d342;
-}
-
-.portfolio-category {
+    font-weight: 600;
+  }
+  
+  /* Animate portfolio-category on scroll */
+  .portfolio-category {
     margin-bottom: 3rem;
-}
-
-.portfolio-category h4 {
-    font-size: 1.8rem;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+  }
+  
+  .portfolio-category.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .portfolio-category h4 {
+    font-size: 1.6rem;
     color: #f9d342;
     text-align: center;
     margin-bottom: 1rem;
-}
-
-.portfolio-grid {
+    font-weight: 500;
+  }
+  
+  .portfolio-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
-}
-
-.portfolio-item {
+  }
+  
+  /* PORTFOLIO ITEM */
+  .portfolio-item {
     position: relative;
-    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    padding-top: 56.25%;
     background: #162447;
     border-radius: 5px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
     overflow: hidden;
-    transition: transform 0.3s ease;
-}
-
-.portfolio-item iframe {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .portfolio-item iframe {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    border-radius: 5px;
-}
-
-.portfolio-item:hover {
-    transform: scale(1.05);
-}
-
-/* Contact Section */
-.contact {
+    border: none;
+  }
+  
+  .portfolio-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
+  }
+  
+  /* CONTACT SECTION */
+  .contact {
     padding: 2rem;
     background: #162447;
     background: linear-gradient(transparent, #162447, transparent);
-}
-
-.contact h3 {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+  }
+  
+  .contact.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .contact h3 {
     text-align: center;
     margin-bottom: 1rem;
     font-size: 2rem;
     color: #f9d342;
-}
-
-.contact p {
+    font-weight: 600;
+  }
+  
+  .contact p {
     text-align: center;
     margin-bottom: 2rem;
     font-size: 1.2rem;
-}
-
-/* Social Buttons */
-.social-links {
+    font-weight: 300;
+  }
+  
+  /* SOCIAL BUTTONS */
+  .social-links {
     display: flex;
     justify-content: center;
     gap: 1.5rem;
     flex-wrap: wrap;
-}
-
-.social-btn {
+  }
+  
+  .social-btn {
     display: flex;
     align-items: center;
     padding: 10px 20px;
@@ -188,71 +235,38 @@ body.scrolled .hero-subtitle {
     border-radius: 5px;
     text-decoration: none;
     font-size: 1rem;
-    font-weight: bold;
+    font-weight: 600;
     transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.social-btn i {
+  }
+  
+  .social-btn i {
     margin-right: 10px;
     font-size: 1.5rem;
-}
-
-/* Social Button Hover Effects */
-.social-btn:hover {
+  }
+  
+  .social-btn:hover {
     background-color: #1f4068;
     color: #f9d342;
-}
-
-.viber-btn {
+  }
+  
+  .viber-btn {
     background-color: #25d366;
     color: #fff;
-}
-
-.viber-btn:hover {
+  }
+  
+  .viber-btn:hover {
     background-color: #1aaf5d;
-}
-
-/* Footer */
-footer {
+  }
+  
+  /* FOOTER */
+  footer {
     text-align: center;
     padding: 1rem;
     background: #162447;
     background: linear-gradient(to top, #162447, transparent);
     color: #fff;
     margin-top: 2rem;
-}
-
-/* Keyframes for Hero Section */
-@keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-/* Interactive Text Resize on Scroll */
-.hero-content {
-    transition: transform 0.5s ease;
-}
-
-body.scrolled .hero-title {
-    transform: scale(1.0);
-}
-
-body.scrolled .hero-subtitle {
-    transform: scale(1.5);
-}
+    font-size: 0.9rem;
+    opacity: 0.8;
+  }
+  
