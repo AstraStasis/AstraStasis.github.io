@@ -1,213 +1,321 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AndreiG Portfolio</title>
-  
-  <!-- Google Fonts: Using Poppins for body and Bebas Neue for hero title -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Bebas+Neue&display=swap"
-    rel="stylesheet"
-  />
-
-  <!-- Font Awesome for icons -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-  />
-
-  <!-- Main Styles -->
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AndreiG | Visual Portfolio</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;800&family=Bebas+Neue&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Header -->
-  <header>
-    <h1>AndreiG</h1>
-    <nav>
-      <ul>
-        <!-- Mode toggle as icon; default dark mode: show moon icon -->
-        <li id="mode-toggle"><i class="fas fa-moon"></i></li>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#portfolio">Portfolio</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
 
-  <!-- Hero Section -->
-  <section class="hero" id="home">
-    <!-- Particles container -->
-    <div id="particles-js"></div>
-    
-    <!-- Four Floating Logos -->
-    <!-- Left side: CapCut, DaVinci Resolve -->
-    <div id="capcut-logo">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Adobe_Photoshop_CC_icon.svg" alt="CapCut Logo" />
-    </div>
-    <div id="davinci-logo">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/9/90/DaVinci_Resolve_17_logo.svg" alt="DaVinci Resolve Logo" />
-    </div>
-    <!-- Right side: Premiere Pro, After Effects -->
-    <div id="premiere-logo">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/4/40/Adobe_Premiere_Pro_CC_icon.svg" alt="Premiere Pro Logo" />
-    </div>
-    <div id="aftereffects-logo">
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/c/cb/Adobe_After_Effects_CC_icon.svg"
-        alt="Adobe After Effects Logo"
-      />
-    </div>
+    <!-- SCROLL PROGRESS BAR -->
+    <div id="scroll-progress"></div>
 
-    <div class="hero-content">
-      <h2 class="hero-title">Welcome to my Portfolio!</h2>
-      <p class="hero-subtitle">
-        Quality video editing services. Explore my works below.
-      </p>
-    </div>
-  </section>
+    <!-- CUSTOM CURSOR -->
+    <div id="cursor"></div>
+    <div id="cursor-follower"></div>
 
-  <!-- Portfolio Section -->
-  <section id="portfolio" class="portfolio">
-    <div class="portfolio-bg-wrapper">
-      <div class="portfolio-bg"></div>
-    </div>
-    <h3 class="animate-on-scroll">My Works</h3>
+    <!-- FILM GRAIN OVERLAY -->
+    <div class="film-grain"></div>
 
-    <!-- Dance Video Category -->
-    <div class="portfolio-category animate-on-scroll">
-      <h4>Dance Videos</h4>
-      <div class="carousel">
-        <button class="arrow left">&#9664;</button>
-        <div class="carousel-track">
-          <!-- 2 real videos -->
-          <div class="carousel-item">
-            <iframe src="https://www.youtube.com/embed/2Ih-mQE52qs" frameborder="0" allowfullscreen></iframe>
-          </div>
-          <div class="carousel-item">
-            <iframe src="https://www.youtube.com/embed/l4qFOv_Lys4" frameborder="0" allowfullscreen></iframe>
-          </div>
-          <!-- 3 placeholders -->
-          <div class="carousel-item placeholder">
-            <iframe src="https://www.youtube.com/embed/" frameborder="0" allowfullscreen></iframe>
-          </div>
-          <div class="carousel-item placeholder">
-            <iframe src="https://www.youtube.com/embed/" frameborder="0" allowfullscreen></iframe>
-          </div>
-          <div class="carousel-item placeholder">
-            <iframe src="https://www.youtube.com/embed/" frameborder="0" allowfullscreen></iframe>
-          </div>
+    <!-- BACKGROUND ENGINE -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- NAVIGATION -->
+    <header>
+        <div class="logo hover-target">AndreiG</div>
+        <nav>
+            <ul>
+                <li><a href="#home" class="nav-link hover-target">Home</a></li>
+                <li><a href="#portfolio" class="nav-link hover-target">Portfolio</a></li>
+                <li><a href="#contact" class="nav-link hover-target">Contact</a></li>
+                <li id="theme-toggle" class="hover-target"><i class="fas fa-moon"></i></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <!-- Separate Headers for centered layout -->
+            <h2 class="hero-text-small hover-target">WELCOME TO</h2>
+            <h1 class="hero-text-large hover-target">MY PORTFOLIO</h1>
+            
+            <p class="hero-subtitle reveal-text delay-1">Quality Video Editing Services</p>
         </div>
-        <button class="arrow right">&#9654;</button>
-      </div>
-    </div>
 
-    <!-- Logo Reveal Animations Category -->
-    <div class="portfolio-category animate-on-scroll">
-      <h4>Logo Reveal Animations</h4>
-      <div class="carousel">
-        <button class="arrow left">&#9664;</button>
-        <div class="carousel-track">
-          <div class="carousel-item">
-            <iframe src="https://www.youtube.com/embed/WhWOab40MEs" frameborder="0" allowfullscreen></iframe>
-          </div>
-          <div class="carousel-item">
-            <iframe src="https://www.youtube.com/embed/kqA42UI4Bug" frameborder="0" allowfullscreen></iframe>
-          </div>
-          <div class="carousel-item placeholder">
-            <iframe src="https://www.youtube.com/embed/" frameborder="0" allowfullscreen></iframe>
-          </div>
-          <div class="carousel-item placeholder">
-            <iframe src="https://www.youtube.com/embed/" frameborder="0" allowfullscreen></iframe>
-          </div>
-          <div class="carousel-item placeholder">
-            <iframe src="https://www.youtube.com/embed/" frameborder="0" allowfullscreen></iframe>
-          </div>
+        <!-- Floating Logos -->
+        <div class="floating-logos">
+            <div class="float-icon" data-speed="2">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Adobe_Photoshop_CC_icon.svg" alt="Photoshop">
+            </div>
+            <div class="float-icon" data-speed="-2">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/90/DaVinci_Resolve_17_logo.svg" alt="DaVinci">
+            </div>
+            <div class="float-icon" data-speed="1.5">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/40/Adobe_Premiere_Pro_CC_icon.svg" alt="Premiere">
+            </div>
+            <div class="float-icon" data-speed="-1.5">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/cb/Adobe_After_Effects_CC_icon.svg" alt="After Effects">
+            </div>
         </div>
-        <button class="arrow right">&#9654;</button>
-      </div>
-    </div>
 
-    <!-- Commentary / Educational Category -->
-    <div class="portfolio-category animate-on-scroll">
-      <h4>Commentary / Educational</h4>
-      <div class="carousel">
-        <button class="arrow left">&#9664;</button>
-        <div class="carousel-track">
-          <div class="carousel-item">
-            <iframe src="https://www.youtube.com/embed/5RN1kKo25L0" frameborder="0" allowfullscreen></iframe>
-          </div>
-          <div class="carousel-item">
-            <iframe src="https://www.youtube.com/embed/7LdOPSUgJTg" frameborder="0" allowfullscreen></iframe>
-          </div>
-          <div class="carousel-item placeholder">
-            <iframe src="https://www.youtube.com/embed/" frameborder="0" allowfullscreen></iframe>
-          </div>
-          <div class="carousel-item placeholder">
-            <iframe src="https://www.youtube.com/embed/" frameborder="0" allowfullscreen></iframe>
-          </div>
-          <div class="carousel-item placeholder">
-            <iframe src="https://www.youtube.com/embed/jwZHvDx9hS8" frameborder="0" allowfullscreen></iframe>
-          </div>
+        <!-- Scroll Down Indicator -->
+        <div class="scroll-indicator">
+            <span>SCROLL</span>
+            <i class="fas fa-chevron-down"></i>
         </div>
-        <button class="arrow right">&#9654;</button>
-      </div>
-    </div>
+    </section>
 
-    <!-- Motion Graphics Category -->
-    <div class="portfolio-category animate-on-scroll">
-      <h4>Motion Graphics</h4>
-      <div class="carousel">
-        <button class="arrow left">&#9664;</button>
-        <div class="carousel-track">
-          <div class="carousel-item">
-            <iframe src="https://www.youtube.com/embed/iizK6iHbyCE" frameborder="0" allowfullscreen></iframe>
-          </div>
-          <div class="carousel-item">
-            <iframe src="https://www.youtube.com/embed/wf6TxDM7DSw" frameborder="0" allowfullscreen></iframe>
-          </div>
-          <div class="carousel-item placeholder">
-            <iframe src="https://www.youtube.com/embed/DnecAlisqm8" frameborder="0" allowfullscreen></iframe>
-          </div>
-          <div class="carousel-item placeholder">
-            <iframe src="https://www.youtube.com/embed/" frameborder="0" allowfullscreen></iframe>
-          </div>
-          <div class="carousel-item placeholder">
-            <iframe src="https://www.youtube.com/embed/eOgeobVK4nU" frameborder="0" allowfullscreen></iframe>
-          </div>
+    <!-- PORTFOLIO SECTION -->
+    <section id="portfolio" class="portfolio">
+        
+        <!-- Category: Dance -->
+        <div class="category-block reveal-up">
+            <div class="category-header">
+                <h3>Dance Videos</h3>
+                <div class="line"></div>
+                <div class="carousel-nav">
+                    <button class="nav-btn prev hover-target"><i class="fas fa-chevron-left"></i></button>
+                    <button class="nav-btn next hover-target"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    <!-- 1 -->
+                    <div class="carousel-card hover-target" onclick="openModal('2Ih-mQE52qs')">
+                        <div class="thumbnail-wrapper">
+                            <img src="https://img.youtube.com/vi/2Ih-mQE52qs/hqdefault.jpg" alt="Dance 1">
+                            <div class="play-overlay"><i class="fas fa-play"></i></div>
+                        </div>
+                        <div class="card-info"><h4>Dance Edit 01</h4><p>Choreography</p></div>
+                    </div>
+                    <!-- 2 -->
+                    <div class="carousel-card hover-target" onclick="openModal('l4qFOv_Lys4')">
+                        <div class="thumbnail-wrapper">
+                            <img src="https://img.youtube.com/vi/l4qFOv_Lys4/hqdefault.jpg" alt="Dance 2">
+                            <div class="play-overlay"><i class="fas fa-play"></i></div>
+                        </div>
+                        <div class="card-info"><h4>Dance Edit 02</h4><p>Freestyle</p></div>
+                    </div>
+                    <!-- 3 -->
+                    <div class="carousel-card placeholder hover-target">
+                        <div class="thumbnail-wrapper"><div class="empty-state"><i class="fas fa-video"></i></div></div>
+                        <div class="card-info"><h4>Coming Soon</h4><p>Slot 3</p></div>
+                    </div>
+                    <!-- 4 -->
+                    <div class="carousel-card placeholder hover-target">
+                        <div class="thumbnail-wrapper"><div class="empty-state"><i class="fas fa-video"></i></div></div>
+                        <div class="card-info"><h4>Coming Soon</h4><p>Slot 4</p></div>
+                    </div>
+                    <!-- 5 -->
+                    <div class="carousel-card placeholder hover-target">
+                        <div class="thumbnail-wrapper"><div class="empty-state"><i class="fas fa-video"></i></div></div>
+                        <div class="card-info"><h4>Coming Soon</h4><p>Slot 5</p></div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <button class="arrow right">&#9654;</button>
-      </div>
+
+        <!-- Category: Logo Reveals -->
+        <div class="category-block reveal-up">
+            <div class="category-header">
+                <h3>Logo Reveals</h3>
+                <div class="line"></div>
+                <div class="carousel-nav">
+                    <button class="nav-btn prev hover-target"><i class="fas fa-chevron-left"></i></button>
+                    <button class="nav-btn next hover-target"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    <!-- 1 -->
+                    <div class="carousel-card hover-target" onclick="openModal('WhWOab40MEs')">
+                        <div class="thumbnail-wrapper">
+                            <img src="https://img.youtube.com/vi/WhWOab40MEs/hqdefault.jpg" alt="Reveal 1">
+                            <div class="play-overlay"><i class="fas fa-play"></i></div>
+                        </div>
+                        <div class="card-info"><h4>Reveal 01</h4><p>3D Animation</p></div>
+                    </div>
+                    <!-- 2 -->
+                    <div class="carousel-card hover-target" onclick="openModal('kqA42UI4Bug')">
+                        <div class="thumbnail-wrapper">
+                            <img src="https://img.youtube.com/vi/kqA42UI4Bug/hqdefault.jpg" alt="Reveal 2">
+                            <div class="play-overlay"><i class="fas fa-play"></i></div>
+                        </div>
+                        <div class="card-info"><h4>Reveal 02</h4><p>Clean Cut</p></div>
+                    </div>
+                    <!-- 3 -->
+                    <div class="carousel-card placeholder hover-target">
+                        <div class="thumbnail-wrapper"><div class="empty-state"><i class="fas fa-cube"></i></div></div>
+                        <div class="card-info"><h4>Coming Soon</h4><p>Slot 3</p></div>
+                    </div>
+                    <!-- 4 -->
+                    <div class="carousel-card placeholder hover-target">
+                        <div class="thumbnail-wrapper"><div class="empty-state"><i class="fas fa-cube"></i></div></div>
+                        <div class="card-info"><h4>Coming Soon</h4><p>Slot 4</p></div>
+                    </div>
+                    <!-- 5 -->
+                    <div class="carousel-card placeholder hover-target">
+                        <div class="thumbnail-wrapper"><div class="empty-state"><i class="fas fa-cube"></i></div></div>
+                        <div class="card-info"><h4>Coming Soon</h4><p>Slot 5</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Category: Educational -->
+        <div class="category-block reveal-up">
+            <div class="category-header">
+                <h3>Educational</h3>
+                <div class="line"></div>
+                <div class="carousel-nav">
+                    <button class="nav-btn prev hover-target"><i class="fas fa-chevron-left"></i></button>
+                    <button class="nav-btn next hover-target"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    <!-- 1 -->
+                    <div class="carousel-card hover-target" onclick="openModal('5RN1kKo25L0')">
+                        <div class="thumbnail-wrapper">
+                            <img src="https://img.youtube.com/vi/5RN1kKo25L0/hqdefault.jpg" alt="Edu 1">
+                            <div class="play-overlay"><i class="fas fa-play"></i></div>
+                        </div>
+                        <div class="card-info"><h4>Commentary 01</h4><p>Deep Dive</p></div>
+                    </div>
+                    <!-- 2 -->
+                    <div class="carousel-card hover-target" onclick="openModal('7LdOPSUgJTg')">
+                        <div class="thumbnail-wrapper">
+                            <img src="https://img.youtube.com/vi/7LdOPSUgJTg/hqdefault.jpg" alt="Edu 2">
+                            <div class="play-overlay"><i class="fas fa-play"></i></div>
+                        </div>
+                        <div class="card-info"><h4>Commentary 02</h4><p>Analysis</p></div>
+                    </div>
+                    <!-- 3 -->
+                    <div class="carousel-card hover-target" onclick="openModal('jwZHvDx9hS8')">
+                        <div class="thumbnail-wrapper">
+                            <img src="https://img.youtube.com/vi/jwZHvDx9hS8/hqdefault.jpg" alt="Edu 3">
+                            <div class="play-overlay"><i class="fas fa-play"></i></div>
+                        </div>
+                        <div class="card-info"><h4>Commentary 03</h4><p>Tutorial</p></div>
+                    </div>
+                    <!-- 4 -->
+                    <div class="carousel-card placeholder hover-target">
+                        <div class="thumbnail-wrapper"><div class="empty-state"><i class="fas fa-book"></i></div></div>
+                        <div class="card-info"><h4>Coming Soon</h4><p>Slot 4</p></div>
+                    </div>
+                    <!-- 5 -->
+                    <div class="carousel-card placeholder hover-target">
+                        <div class="thumbnail-wrapper"><div class="empty-state"><i class="fas fa-book"></i></div></div>
+                        <div class="card-info"><h4>Coming Soon</h4><p>Slot 5</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Category: Motion Graphics -->
+        <div class="category-block reveal-up">
+            <div class="category-header">
+                <h3>Motion Graphics</h3>
+                <div class="line"></div>
+                <div class="carousel-nav">
+                    <button class="nav-btn prev hover-target"><i class="fas fa-chevron-left"></i></button>
+                    <button class="nav-btn next hover-target"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    <!-- 1 -->
+                    <div class="carousel-card hover-target" onclick="openModal('iizK6iHbyCE')">
+                        <div class="thumbnail-wrapper">
+                            <img src="https://img.youtube.com/vi/iizK6iHbyCE/hqdefault.jpg" alt="Motion 1">
+                            <div class="play-overlay"><i class="fas fa-play"></i></div>
+                        </div>
+                        <div class="card-info"><h4>Motion 01</h4><p>Showreel</p></div>
+                    </div>
+                    <!-- 2 -->
+                    <div class="carousel-card hover-target" onclick="openModal('wf6TxDM7DSw')">
+                        <div class="thumbnail-wrapper">
+                            <img src="https://img.youtube.com/vi/wf6TxDM7DSw/hqdefault.jpg" alt="Motion 2">
+                            <div class="play-overlay"><i class="fas fa-play"></i></div>
+                        </div>
+                        <div class="card-info"><h4>Motion 02</h4><p>Commercial</p></div>
+                    </div>
+                    <!-- 3 -->
+                    <div class="carousel-card hover-target" onclick="openModal('DnecAlisqm8')">
+                        <div class="thumbnail-wrapper">
+                            <img src="https://img.youtube.com/vi/DnecAlisqm8/hqdefault.jpg" alt="Motion 3">
+                            <div class="play-overlay"><i class="fas fa-play"></i></div>
+                        </div>
+                        <div class="card-info"><h4>Motion 03</h4><p>VFX</p></div>
+                    </div>
+                    <!-- 4 -->
+                    <div class="carousel-card hover-target" onclick="openModal('eOgeobVK4nU')">
+                        <div class="thumbnail-wrapper">
+                            <img src="https://img.youtube.com/vi/eOgeobVK4nU/hqdefault.jpg" alt="Motion 4">
+                            <div class="play-overlay"><i class="fas fa-play"></i></div>
+                        </div>
+                        <div class="card-info"><h4>Motion 04</h4><p>Intro</p></div>
+                    </div>
+                     <!-- 5 -->
+                     <div class="carousel-card placeholder hover-target">
+                        <div class="thumbnail-wrapper"><div class="empty-state"><i class="fas fa-magic"></i></div></div>
+                        <div class="card-info"><h4>Coming Soon</h4><p>Slot 5</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact reveal-up">
+        <div class="contact-box">
+            <h2>LET'S CONNECT</h2>
+            <p>Ready to start your next project?</p>
+            <div class="social-grid">
+                <a href="https://www.facebook.com/andreiG7777/" target="_blank" class="social-card hover-target">
+                    <i class="fab fa-facebook-f"></i>
+                    <span>Facebook</span>
+                </a>
+                <a href="https://x.com/AndreiG_17" target="_blank" class="social-card hover-target">
+                    <i class="fab fa-twitter"></i>
+                    <span>Twitter / X</span>
+                </a>
+                <div class="social-card viber hover-target">
+                    <i class="fab fa-viber"></i>
+                    <span>+63 993 924 1678</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2025 AndreiG. All Rights Reserved.</p>
+    </footer>
+
+    <!-- VIDEO MODAL -->
+    <div id="video-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal hover-target">&times;</span>
+            <div class="iframe-container">
+                <iframe id="modal-iframe" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+        </div>
     </div>
-  </section>
 
-  <!-- Contact Section -->
-  <section id="contact" class="contact animate-on-scroll">
-    <h3>Contact Me</h3>
-    <p>Let's connect through my social media accounts below!</p>
-    <div class="social-links">
-      <a href="https://www.facebook.com/andreiG7777/" target="_blank" class="social-btn">
-        <i class="fab fa-facebook-f"></i> Facebook
-      </a>
-      <a href="https://x.com/AndreiG_17" target="_blank" class="social-btn">
-        <i class="fab fa-twitter"></i> Twitter/X
-      </a>
-      <div class="social-btn viber-btn">
-        <i class="fab fa-viber"></i> Viber +639939241678
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 AndreiG. All rights reserved.</p>
-  </footer>
-
-  <!-- Load particles.js library from CDN -->
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-  <!-- Main Script -->
-  <script src="script.js"></script>
+    <!-- SCRIPT -->
+    <script src="script.js"></script>
 </body>
 </html>
