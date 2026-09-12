@@ -105,7 +105,7 @@ window.addEventListener('scroll', () => {
 resize();
 animateBackground();
 
-
+/* test */
 /* =========================================
    2. CUSTOM CURSOR
    ========================================= */
