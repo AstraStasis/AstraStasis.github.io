@@ -1,323 +1,233 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AndreiG | Visual Portfolio</title>
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;800&family=Bebas+Neue&display=swap" rel="stylesheet">
-    
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
-    <!-- Styles -->
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AndreiG — video editing and motion graphics. Explore dance films, logo animations, educational edits, and motion design. Let's make something worth watching.">
+  <meta name="theme-color" content="#141413">
+  <meta property="og:title" content="AndreiG — Made to move you.">
+  <meta property="og:description" content="Video editing. Motion graphics. Stories with feeling. Explore the work of AndreiG.">
+  <meta property="og:type" content="website">
+  <title>AndreiG — Video Editor & Motion Designer</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23ff683b'/%3E%3Cpath d='M15 46 28 17h8l13 29H39l-3-8H27l-3 8Zm15-16h4l-2-6Z' fill='%23141413'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
-
-    <!-- SCROLL PROGRESS BAR -->
-    <div id="scroll-progress"></div>
-
-    <!-- CUSTOM CURSOR -->
-    <div id="cursor"></div>
-    <div id="cursor-follower"></div>
-
-    <!-- FILM GRAIN OVERLAY -->
-    <div class="film-grain"></div>
-
-    <!-- BACKGROUND ENGINE -->
-    <canvas id="bg-canvas"></canvas>
-
-    <!-- NAVIGATION -->
-    <header>
-        <div class="logo hover-target">AndreiG</div>
-        <nav>
-            <ul>
-                <li><a href="#home" class="nav-link hover-target">Home</a></li>
-                <li><a href="#portfolio" class="nav-link hover-target">Portfolio</a></li>
-                <li><a href="#contact" class="nav-link hover-target">Contact</a></li>
-                <li id="theme-toggle" class="hover-target"><i class="fas fa-moon"></i></li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- HERO SECTION -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <!-- Separate Headers for centered layout -->
-            <h2 class="hero-text-small hover-target">WELCOME TO</h2>
-            <h1 class="hero-text-large hover-target">MY PORTFOLIO</h1>
-            
-            <p class="hero-subtitle reveal-text delay-1">Quality Video Editing Services</p>
-        </div>
-
-        <!-- Floating Logos -->
-        <div class="floating-logos">
-            <div class="float-icon" data-speed="2">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Adobe_Photoshop_CC_icon.svg" alt="Photoshop">
-            </div>
-            <div class="float-icon" data-speed="-2">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/9/90/DaVinci_Resolve_17_logo.svg" alt="DaVinci">
-            </div>
-            <div class="float-icon" data-speed="1.5">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/4/40/Adobe_Premiere_Pro_CC_icon.svg" alt="Premiere">
-            </div>
-            <div class="float-icon" data-speed="-1.5">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/c/cb/Adobe_After_Effects_CC_icon.svg" alt="After Effects">
-            </div>
-        </div>
-
-        <!-- Scroll Down Indicator -->
-        <div class="scroll-indicator">
-            <span>SCROLL</span>
-            <i class="fas fa-chevron-down"></i>
-        </div>
-    </section>
-
-    <!-- PORTFOLIO SECTION -->
-    <section id="portfolio" class="portfolio">
-        
-        <!-- Category: Dance -->
-        <div class="category-block reveal-up">
-            <div class="category-header">
-                <h3>Dance Videos</h3>
-                <div class="line"></div>
-                <div class="carousel-nav">
-                    <button class="nav-btn prev hover-target"><i class="fas fa-chevron-left"></i></button>
-                    <button class="nav-btn next hover-target"><i class="fas fa-chevron-right"></i></button>
-                </div>
-            </div>
-            <div class="carousel-container">
-                <div class="carousel-track">
-                    <!-- 1 -->
-                    <div class="carousel-card hover-target" onclick="openModal('2Ih-mQE52qs')">
-                        <div class="thumbnail-wrapper">
-                            <img src="https://img.youtube.com/vi/2Ih-mQE52qs/hqdefault.jpg" alt="Dance 1">
-                            <div class="play-overlay"><i class="fas fa-play"></i></div>
-                        </div>
-                        <div class="card-info"><h4>Dance Edit 01</h4><p>Choreography</p></div>
-                    </div>
-                    <!-- 2 -->
-                    <div class="carousel-card hover-target" onclick="openModal('l4qFOv_Lys4')">
-                        <div class="thumbnail-wrapper">
-                            <img src="https://img.youtube.com/vi/l4qFOv_Lys4/hqdefault.jpg" alt="Dance 2">
-                            <div class="play-overlay"><i class="fas fa-play"></i></div>
-                        </div>
-                        <div class="card-info"><h4>Dance Edit 02</h4><p>Freestyle</p></div>
-                    </div>
-                    <!-- 3 -->
-                    <div class="carousel-card placeholder hover-target">
-                        <div class="thumbnail-wrapper"><div class="empty-state"><i class="fas fa-video"></i></div></div>
-                        <div class="card-info"><h4>Coming Soon</h4><p>Slot 3</p></div>
-                    </div>
-                    <!-- 4 -->
-                    <div class="carousel-card placeholder hover-target">
-                        <div class="thumbnail-wrapper"><div class="empty-state"><i class="fas fa-video"></i></div></div>
-                        <div class="card-info"><h4>Coming Soon</h4><p>Slot 4</p></div>
-                    </div>
-                    <!-- 5 -->
-                    <div class="carousel-card placeholder hover-target">
-                        <div class="thumbnail-wrapper"><div class="empty-state"><i class="fas fa-video"></i></div></div>
-                        <div class="card-info"><h4>Coming Soon</h4><p>Slot 5</p></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Category: Logo Reveals -->
-        <div class="category-block reveal-up">
-            <div class="category-header">
-                <h3>Logo Reveals</h3>
-                <div class="line"></div>
-                <div class="carousel-nav">
-                    <button class="nav-btn prev hover-target"><i class="fas fa-chevron-left"></i></button>
-                    <button class="nav-btn next hover-target"><i class="fas fa-chevron-right"></i></button>
-                </div>
-            </div>
-            <div class="carousel-container">
-                <div class="carousel-track">
-                    <!-- 1 -->
-                    <div class="carousel-card hover-target" onclick="openModal('WhWOab40MEs')">
-                        <div class="thumbnail-wrapper">
-                            <img src="https://img.youtube.com/vi/WhWOab40MEs/hqdefault.jpg" alt="Reveal 1">
-                            <div class="play-overlay"><i class="fas fa-play"></i></div>
-                        </div>
-                        <div class="card-info"><h4>Reveal 01</h4><p>3D Animation</p></div>
-                    </div>
-                    <!-- 2 -->
-                    <div class="carousel-card hover-target" onclick="openModal('kqA42UI4Bug')">
-                        <div class="thumbnail-wrapper">
-                            <img src="https://img.youtube.com/vi/kqA42UI4Bug/hqdefault.jpg" alt="Reveal 2">
-                            <div class="play-overlay"><i class="fas fa-play"></i></div>
-                        </div>
-                        <div class="card-info"><h4>Reveal 02</h4><p>Clean Cut</p></div>
-                    </div>
-                    <!-- 3 -->
-                    <div class="carousel-card placeholder hover-target">
-                        <div class="thumbnail-wrapper"><div class="empty-state"><i class="fas fa-cube"></i></div></div>
-                        <div class="card-info"><h4>Coming Soon</h4><p>Slot 3</p></div>
-                    </div>
-                    <!-- 4 -->
-                    <div class="carousel-card placeholder hover-target">
-                        <div class="thumbnail-wrapper"><div class="empty-state"><i class="fas fa-cube"></i></div></div>
-                        <div class="card-info"><h4>Coming Soon</h4><p>Slot 4</p></div>
-                    </div>
-                    <!-- 5 -->
-                    <div class="carousel-card placeholder hover-target">
-                        <div class="thumbnail-wrapper"><div class="empty-state"><i class="fas fa-cube"></i></div></div>
-                        <div class="card-info"><h4>Coming Soon</h4><p>Slot 5</p></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Category: Educational -->
-        <div class="category-block reveal-up">
-            <div class="category-header">
-                <h3>Educational</h3>
-                <div class="line"></div>
-                <div class="carousel-nav">
-                    <button class="nav-btn prev hover-target"><i class="fas fa-chevron-left"></i></button>
-                    <button class="nav-btn next hover-target"><i class="fas fa-chevron-right"></i></button>
-                </div>
-            </div>
-            <div class="carousel-container">
-                <div class="carousel-track">
-                    <!-- 1 -->
-                    <div class="carousel-card hover-target" onclick="openModal('5RN1kKo25L0')">
-                        <div class="thumbnail-wrapper">
-                            <img src="https://img.youtube.com/vi/5RN1kKo25L0/hqdefault.jpg" alt="Edu 1">
-                            <div class="play-overlay"><i class="fas fa-play"></i></div>
-                        </div>
-                        <div class="card-info"><h4>Commentary 01</h4><p>Deep Dive</p></div>
-                    </div>
-                    <!-- 2 -->
-                    <div class="carousel-card hover-target" onclick="openModal('7LdOPSUgJTg')">
-                        <div class="thumbnail-wrapper">
-                            <img src="https://img.youtube.com/vi/7LdOPSUgJTg/hqdefault.jpg" alt="Edu 2">
-                            <div class="play-overlay"><i class="fas fa-play"></i></div>
-                        </div>
-                        <div class="card-info"><h4>Commentary 02</h4><p>Analysis</p></div>
-                    </div>
-                    <!-- 3 -->
-                    <div class="carousel-card hover-target" onclick="openModal('jwZHvDx9hS8')">
-                        <div class="thumbnail-wrapper">
-                            <img src="https://img.youtube.com/vi/jwZHvDx9hS8/hqdefault.jpg" alt="Edu 3">
-                            <div class="play-overlay"><i class="fas fa-play"></i></div>
-                        </div>
-                        <div class="card-info"><h4>Commentary 03</h4><p>Tutorial</p></div>
-                    </div>
-                    <!-- 4 -->
-                    <div class="carousel-card placeholder hover-target">
-                        <div class="thumbnail-wrapper"><div class="empty-state"><i class="fas fa-book"></i></div></div>
-                        <div class="card-info"><h4>Coming Soon</h4><p>Slot 4</p></div>
-                    </div>
-                    <!-- 5 -->
-                    <div class="carousel-card placeholder hover-target">
-                        <div class="thumbnail-wrapper"><div class="empty-state"><i class="fas fa-book"></i></div></div>
-                        <div class="card-info"><h4>Coming Soon</h4><p>Slot 5</p></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Category: Motion Graphics -->
-        <div class="category-block reveal-up">
-            <div class="category-header">
-                <h3>Motion Graphics</h3>
-                <div class="line"></div>
-                <div class="carousel-nav">
-                    <button class="nav-btn prev hover-target"><i class="fas fa-chevron-left"></i></button>
-                    <button class="nav-btn next hover-target"><i class="fas fa-chevron-right"></i></button>
-                </div>
-            </div>
-            <div class="carousel-container">
-                <div class="carousel-track">
-                    <!-- 1 -->
-                    <div class="carousel-card hover-target" onclick="openModal('iizK6iHbyCE')">
-                        <div class="thumbnail-wrapper">
-                            <img src="https://img.youtube.com/vi/iizK6iHbyCE/hqdefault.jpg" alt="Motion 1">
-                            <div class="play-overlay"><i class="fas fa-play"></i></div>
-                        </div>
-                        <div class="card-info"><h4>Motion 01</h4><p>Showreel</p></div>
-                    </div>
-                    <!-- 2 -->
-                    <div class="carousel-card hover-target" onclick="openModal('wf6TxDM7DSw')">
-                        <div class="thumbnail-wrapper">
-                            <img src="https://img.youtube.com/vi/wf6TxDM7DSw/hqdefault.jpg" alt="Motion 2">
-                            <div class="play-overlay"><i class="fas fa-play"></i></div>
-                        </div>
-                        <div class="card-info"><h4>Motion 02</h4><p>Commercial</p></div>
-                    </div>
-                    <!-- 3 -->
-                    <div class="carousel-card hover-target" onclick="openModal('DnecAlisqm8')">
-                        <div class="thumbnail-wrapper">
-                            <img src="https://img.youtube.com/vi/DnecAlisqm8/hqdefault.jpg" alt="Motion 3">
-                            <div class="play-overlay"><i class="fas fa-play"></i></div>
-                        </div>
-                        <div class="card-info"><h4>Motion 03</h4><p>VFX</p></div>
-                    </div>
-                    <!-- 4 -->
-                    <div class="carousel-card hover-target" onclick="openModal('eOgeobVK4nU')">
-                        <div class="thumbnail-wrapper">
-                            <img src="https://img.youtube.com/vi/eOgeobVK4nU/hqdefault.jpg" alt="Motion 4">
-                            <div class="play-overlay"><i class="fas fa-play"></i></div>
-                        </div>
-                        <div class="card-info"><h4>Motion 04</h4><p>Intro</p></div>
-                    </div>
-                     <!-- 5 -->
-                     <div class="carousel-card placeholder hover-target">
-                        <div class="thumbnail-wrapper"><div class="empty-state"><i class="fas fa-magic"></i></div></div>
-                        <div class="card-info"><h4>Coming Soon</h4><p>Slot 5</p></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" class="contact reveal-up">
-        <div class="contact-box">
-            <h2>LET'S CONNECT</h2>
-            <p>Ready to start your next project?</p>
-            <div class="social-grid">
-                <a href="https://www.facebook.com/andreiG7777/" target="_blank" class="social-card hover-target">
-                    <i class="fab fa-facebook-f"></i>
-                    <span>Facebook</span>
-                </a>
-                <a href="https://x.com/AndreiG_17" target="_blank" class="social-card hover-target">
-                    <i class="fab fa-twitter"></i>
-                    <span>Twitter / X</span>
-                </a>
-                <div class="social-card viber hover-target">
-                    <i class="fab fa-viber"></i>
-                    <span>+63 993 924 1678</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-        <p>&copy; 2025 AndreiG. All Rights Reserved.</p>
-    </footer>
-
-    <!-- VIDEO MODAL -->
-    <div id="video-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal hover-target">&times;</span>
-            <div class="iframe-container">
-                <iframe id="modal-iframe" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            </div>
-        </div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="scroll-progress" aria-hidden="true"></div>
+  <header class="site-header">
+    <a class="wordmark" href="#home" aria-label="AndreiG home">andrei<span>g</span><span class="logo-dot">.</span></a>
+    <nav class="desktop-nav" aria-label="Main navigation">
+      <a class="nav-link" href="#portfolio">Selected work <span>11</span></a>
+      <a class="nav-link" href="#about">The approach</a>
+      <a class="nav-link" href="#contact">Let’s talk <span aria-hidden="true">↗</span></a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button theme-toggle" type="button" aria-label="Switch to light theme" hidden>
+        <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
+        <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.5A9 9 0 0 1 8.5 4 9 9 0 1 0 20 15.5Z"/></svg>
+      </button>
+      <a class="header-cta" href="#contact">Have a project? <span aria-hidden="true">↗</span></a>
+      <button class="menu-toggle icon-button" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open navigation" hidden><span></span><span></span></button>
     </div>
-
-    <!-- SCRIPT -->
-    <script src="script.js"></script>
+    <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation" hidden>
+      <a href="#portfolio">Selected work <span>01</span></a>
+      <a href="#about">The approach <span>02</span></a>
+      <a href="#contact">Let’s talk <span>03</span></a>
+    </nav>
+  </header>
+  <main id="main">
+    <section class="hero section-shell" id="home" aria-labelledby="hero-title">
+      <div class="hero-topline"><p class="eyebrow"><span class="status-dot"></span> Independent video editor & motion designer</p><span class="edition">THE PORTFOLIO / VOL. 01</span></div>
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <h1 id="hero-title">Good stories.<br>Great edits.<br><span>Real feeling.</span></h1>
+          <p class="hero-description">I’m Andrei. I turn footage into films that find their rhythm, hold your attention, and stay with you.</p>
+          <div class="hero-actions"><a href="#portfolio" class="button button-primary">Explore my work <span aria-hidden="true">↘</span></a><a class="text-link" href="https://www.youtube.com/watch?v=iizK6iHbyCE" data-video="iizK6iHbyCE" data-title="Motion 01 — Showreel"><span class="small-play" aria-hidden="true">▶</span> Play showreel</a></div>
+          <div class="hero-note"><span class="asterisk" aria-hidden="true">✳</span><p>A little rhythm. A little obsession.<br>A lot of attention to the details.</p></div>
+        </div>
+        <div class="editor" aria-label="Interactive featured project preview">
+          <div class="editor-bar"><span><span class="status-dot"></span> THE CREATIVE PLAYGROUND</span><span class="editor-dots" aria-hidden="true">•••</span></div>
+          <a class="editor-stage" href="https://www.youtube.com/watch?v=iizK6iHbyCE" data-video="iizK6iHbyCE" data-title="Motion 01 — Showreel" aria-label="Watch Motion 01 showreel">
+            <img class="stage-image" src="bg.jpg" alt="" width="3000" height="1688" fetchpriority="high">
+            <div class="stage-grid" aria-hidden="true"></div>
+            <div class="stage-top"><span>ANDREIG / MOTION STUDY</span><span class="stage-number">01 — 04</span></div>
+            <div class="motion-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div><span class="art-star">✳</span></div>
+            <div class="stage-title" aria-hidden="true">MAKE<br><span>IT MOVE.</span></div>
+            <div class="stage-bottom"><span class="stage-caption">Motion graphics / Showreel</span><span class="stage-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 11 7-11 7Z"/></svg><span class="sr-only">Play featured video</span></span></div>
+            <span class="frame-corner corner-tl" aria-hidden="true"></span><span class="frame-corner corner-br" aria-hidden="true"></span>
+          </a>
+          <div class="editor-timeline">
+            <div class="timeline-heading"><span>SELECT A TRACK</span><span class="timeline-status" aria-live="polite">01 / Motion</span></div>
+            <div class="timeline-ruler" aria-hidden="true"><span>00:00</span><span>00:05</span><span>00:10</span><span>00:15</span><span>00:20</span></div>
+            <div class="timeline-tracks" role="group" aria-label="Featured projects">
+              <button type="button" class="track active" data-track="0" aria-pressed="true"><span>01</span> Motion</button>
+              <button type="button" class="track" data-track="1" aria-pressed="false"><span>02</span> Dance</button>
+              <button type="button" class="track" data-track="2" aria-pressed="false"><span>03</span> Logos</button>
+              <button type="button" class="track" data-track="3" aria-pressed="false"><span>04</span> Stories</button>
+            </div>
+            <div class="audio-wave" aria-hidden="true"></div>
+          </div>
+          <div class="editor-foot"><span><span class="tiny-square"></span> Built around the beat.</span><span>PICTURE + SOUND + FEELING</span></div>
+        </div>
+      </div>
+      <div class="hero-bottom"><span>Scroll to see what I mean</span><a href="#portfolio" aria-label="Scroll to selected work">↓</a><span>11 PROJECTS. 4 CREATIVE DIRECTIONS.</span></div>
+    </section>
+    <div class="discipline-strip" aria-label="Creative disciplines"><div><span>VIDEO EDITING</span><span class="strip-star" aria-hidden="true">✳</span><span>MOTION DESIGN</span><span class="strip-star" aria-hidden="true">✳</span><span>VISUAL STORYTELLING</span><span class="strip-star" aria-hidden="true">✳</span><span>MADE TO MOVE YOU</span><span class="strip-star" aria-hidden="true">✳</span></div></div>
+    <section id="portfolio" class="work section-shell section-space" aria-labelledby="work-title">
+      <div class="section-heading reveal"><div><p class="eyebrow section-kicker"><span>01 /</span> THE GOOD STUFF</p><h2 id="work-title">Selected <span class="serif-word">work.</span></h2></div><p>A mix of movement, identity, and ideas.<br>Different stories. The same attention to detail.</p></div>
+      <div class="work-toolbar"><div class="filters" role="group" aria-label="Filter projects" hidden><button class="filter active" type="button" data-filter="all" aria-pressed="true">All work <span>11</span></button><button class="filter" type="button" data-filter="motion" aria-pressed="false">Motion graphics <span>04</span></button><button class="filter" type="button" data-filter="dance" aria-pressed="false">Dance <span>02</span></button><button class="filter" type="button" data-filter="logos" aria-pressed="false">Logo reveals <span>02</span></button><button class="filter" type="button" data-filter="education" aria-pressed="false">Educational <span>03</span></button></div><span class="results-count" role="status">Showing 11 projects</span></div>
+      <div class="projects-grid">
+        <article class="project-card" data-category="motion">
+          <a class="project-link" href="https://www.youtube.com/watch?v=iizK6iHbyCE" data-video="iizK6iHbyCE" data-title="Motion 01 — Showreel" aria-label="Watch Motion 01: Showreel">
+            <div class="project-image">
+              <img src="https://img.youtube.com/vi/iizK6iHbyCE/maxresdefault.jpg" alt="Motion 01 video thumbnail" width="480" height="360" loading="lazy" decoding="async">
+              <span class="project-category">Motion graphics</span>
+              <span class="project-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m9 5 11 7-11 7Z"/></svg></span>
+              <span class="project-watch">Watch project <span aria-hidden="true">↗</span></span>
+            </div>
+            <div class="project-info"><div><h3>Motion 01</h3><p>Showreel</p></div><span class="project-index">01 / 11</span></div>
+          </a>
+        </article>
+        <article class="project-card" data-category="dance">
+          <a class="project-link" href="https://www.youtube.com/watch?v=2Ih-mQE52qs" data-video="2Ih-mQE52qs" data-title="Dance Edit 01 — Choreography" aria-label="Watch Dance Edit 01: Choreography">
+            <div class="project-image">
+              <img src="https://img.youtube.com/vi/2Ih-mQE52qs/maxresdefault.jpg" alt="Dance Edit 01 video thumbnail" width="480" height="360" loading="lazy" decoding="async">
+              <span class="project-category">Dance</span>
+              <span class="project-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m9 5 11 7-11 7Z"/></svg></span>
+              <span class="project-watch">Watch project <span aria-hidden="true">↗</span></span>
+            </div>
+            <div class="project-info"><div><h3>Dance Edit 01</h3><p>Choreography</p></div><span class="project-index">02 / 11</span></div>
+          </a>
+        </article>
+        <article class="project-card" data-category="logos">
+          <a class="project-link" href="https://www.youtube.com/watch?v=WhWOab40MEs" data-video="WhWOab40MEs" data-title="Reveal 01 — 3D Animation" aria-label="Watch Reveal 01: 3D Animation">
+            <div class="project-image">
+              <img src="https://img.youtube.com/vi/WhWOab40MEs/maxresdefault.jpg" alt="Reveal 01 video thumbnail" width="480" height="360" loading="lazy" decoding="async">
+              <span class="project-category">Logo reveals</span>
+              <span class="project-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m9 5 11 7-11 7Z"/></svg></span>
+              <span class="project-watch">Watch project <span aria-hidden="true">↗</span></span>
+            </div>
+            <div class="project-info"><div><h3>Reveal 01</h3><p>3D Animation</p></div><span class="project-index">03 / 11</span></div>
+          </a>
+        </article>
+        <article class="project-card" data-category="motion">
+          <a class="project-link" href="https://www.youtube.com/watch?v=wf6TxDM7DSw" data-video="wf6TxDM7DSw" data-title="Motion 02 — Commercial" aria-label="Watch Motion 02: Commercial">
+            <div class="project-image">
+              <img src="https://img.youtube.com/vi/wf6TxDM7DSw/maxresdefault.jpg" alt="Motion 02 video thumbnail" width="480" height="360" loading="lazy" decoding="async">
+              <span class="project-category">Motion graphics</span>
+              <span class="project-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m9 5 11 7-11 7Z"/></svg></span>
+              <span class="project-watch">Watch project <span aria-hidden="true">↗</span></span>
+            </div>
+            <div class="project-info"><div><h3>Motion 02</h3><p>Commercial</p></div><span class="project-index">04 / 11</span></div>
+          </a>
+        </article>
+        <article class="project-card" data-category="education">
+          <a class="project-link" href="https://www.youtube.com/watch?v=5RN1kKo25L0" data-video="5RN1kKo25L0" data-title="Commentary 01 — Deep Dive" aria-label="Watch Commentary 01: Deep Dive">
+            <div class="project-image">
+              <img src="https://img.youtube.com/vi/5RN1kKo25L0/maxresdefault.jpg" alt="Commentary 01 video thumbnail" width="480" height="360" loading="lazy" decoding="async">
+              <span class="project-category">Educational</span>
+              <span class="project-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m9 5 11 7-11 7Z"/></svg></span>
+              <span class="project-watch">Watch project <span aria-hidden="true">↗</span></span>
+            </div>
+            <div class="project-info"><div><h3>Commentary 01</h3><p>Deep Dive</p></div><span class="project-index">05 / 11</span></div>
+          </a>
+        </article>
+        <article class="project-card" data-category="dance">
+          <a class="project-link" href="https://www.youtube.com/watch?v=l4qFOv_Lys4" data-video="l4qFOv_Lys4" data-title="Dance Edit 02 — Freestyle" aria-label="Watch Dance Edit 02: Freestyle">
+            <div class="project-image">
+              <img src="https://img.youtube.com/vi/l4qFOv_Lys4/maxresdefault.jpg" alt="Dance Edit 02 video thumbnail" width="480" height="360" loading="lazy" decoding="async">
+              <span class="project-category">Dance</span>
+              <span class="project-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m9 5 11 7-11 7Z"/></svg></span>
+              <span class="project-watch">Watch project <span aria-hidden="true">↗</span></span>
+            </div>
+            <div class="project-info"><div><h3>Dance Edit 02</h3><p>Freestyle</p></div><span class="project-index">06 / 11</span></div>
+          </a>
+        </article>
+        <article class="project-card" data-category="logos">
+          <a class="project-link" href="https://www.youtube.com/watch?v=kqA42UI4Bug" data-video="kqA42UI4Bug" data-title="Reveal 02 — Clean Cut" aria-label="Watch Reveal 02: Clean Cut">
+            <div class="project-image">
+              <img src="https://img.youtube.com/vi/kqA42UI4Bug/maxresdefault.jpg" alt="Reveal 02 video thumbnail" width="480" height="360" loading="lazy" decoding="async">
+              <span class="project-category">Logo reveals</span>
+              <span class="project-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m9 5 11 7-11 7Z"/></svg></span>
+              <span class="project-watch">Watch project <span aria-hidden="true">↗</span></span>
+            </div>
+            <div class="project-info"><div><h3>Reveal 02</h3><p>Clean Cut</p></div><span class="project-index">07 / 11</span></div>
+          </a>
+        </article>
+        <article class="project-card" data-category="education">
+          <a class="project-link" href="https://www.youtube.com/watch?v=7LdOPSUgJTg" data-video="7LdOPSUgJTg" data-title="Commentary 02 — Analysis" aria-label="Watch Commentary 02: Analysis">
+            <div class="project-image">
+              <img src="https://img.youtube.com/vi/7LdOPSUgJTg/maxresdefault.jpg" alt="Commentary 02 video thumbnail" width="480" height="360" loading="lazy" decoding="async">
+              <span class="project-category">Educational</span>
+              <span class="project-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m9 5 11 7-11 7Z"/></svg></span>
+              <span class="project-watch">Watch project <span aria-hidden="true">↗</span></span>
+            </div>
+            <div class="project-info"><div><h3>Commentary 02</h3><p>Analysis</p></div><span class="project-index">08 / 11</span></div>
+          </a>
+        </article>
+        <article class="project-card" data-category="motion">
+          <a class="project-link" href="https://www.youtube.com/watch?v=DnecAlisqm8" data-video="DnecAlisqm8" data-title="Motion 03 — VFX" aria-label="Watch Motion 03: VFX">
+            <div class="project-image">
+              <img src="https://img.youtube.com/vi/DnecAlisqm8/hqdefault.jpg" alt="Motion 03 video thumbnail" width="480" height="360" loading="lazy" decoding="async">
+              <span class="project-category">Motion graphics</span>
+              <span class="project-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m9 5 11 7-11 7Z"/></svg></span>
+              <span class="project-watch">Watch project <span aria-hidden="true">↗</span></span>
+            </div>
+            <div class="project-info"><div><h3>Motion 03</h3><p>VFX</p></div><span class="project-index">09 / 11</span></div>
+          </a>
+        </article>
+        <article class="project-card" data-category="education">
+          <a class="project-link" href="https://www.youtube.com/watch?v=jwZHvDx9hS8" data-video="jwZHvDx9hS8" data-title="Commentary 03 — Tutorial" aria-label="Watch Commentary 03: Tutorial">
+            <div class="project-image">
+              <img src="https://img.youtube.com/vi/jwZHvDx9hS8/maxresdefault.jpg" alt="Commentary 03 video thumbnail" width="480" height="360" loading="lazy" decoding="async">
+              <span class="project-category">Educational</span>
+              <span class="project-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m9 5 11 7-11 7Z"/></svg></span>
+              <span class="project-watch">Watch project <span aria-hidden="true">↗</span></span>
+            </div>
+            <div class="project-info"><div><h3>Commentary 03</h3><p>Tutorial</p></div><span class="project-index">10 / 11</span></div>
+          </a>
+        </article>
+        <article class="project-card" data-category="motion">
+          <a class="project-link" href="https://www.youtube.com/watch?v=eOgeobVK4nU" data-video="eOgeobVK4nU" data-title="Motion 04 — Intro" aria-label="Watch Motion 04: Intro">
+            <div class="project-image">
+              <img src="https://img.youtube.com/vi/eOgeobVK4nU/maxresdefault.jpg" alt="Motion 04 video thumbnail" width="480" height="360" loading="lazy" decoding="async">
+              <span class="project-category">Motion graphics</span>
+              <span class="project-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m9 5 11 7-11 7Z"/></svg></span>
+              <span class="project-watch">Watch project <span aria-hidden="true">↗</span></span>
+            </div>
+            <div class="project-info"><div><h3>Motion 04</h3><p>Intro</p></div><span class="project-index">11 / 11</span></div>
+          </a>
+        </article>
+      </div>
+      <div class="work-end"><span>That’s the collection. Your project could be next.</span><a href="#contact" class="text-link">Let’s make it happen <span aria-hidden="true">↗</span></a></div>
+    </section>
+    <section id="about" class="about section-shell section-space" aria-labelledby="about-title">
+      <div class="about-intro reveal"><p class="eyebrow section-kicker"><span>02 /</span> BEHIND THE TIMELINE</p><h2 id="about-title">More than cuts.<br><span class="serif-word">A point of view.</span></h2><p class="about-description">The right cut changes everything. I work at the intersection of video editing and motion design, bringing pace, personality, and purpose to every frame.</p><div class="signature">Andrei G<span>✳</span></div><p class="signature-label">THE PERSON BEHIND THE PLAY BUTTON</p></div>
+      <div class="approach-list reveal">
+        <details open><summary><span class="approach-number">01</span><span>Find the story</span><span class="details-icon" aria-hidden="true">+</span></summary><div class="approach-content"><p>Start with what matters: your idea, your audience, and the feeling you want to leave behind. Every editing decision follows from there.</p><div class="mini-tags"><span>Creative direction</span><span>Story & structure</span></div></div></details>
+        <details><summary><span class="approach-number">02</span><span>Make it move</span><span class="details-icon" aria-hidden="true">+</span></summary><div class="approach-content"><p>Build the rhythm with intentional cuts, considered transitions, and motion graphics that feel like part of the story.</p><div class="mini-tags"><span>Video editing</span><span>Motion graphics</span></div></div></details>
+        <details><summary><span class="approach-number">03</span><span>Obsess over the finish</span><span class="details-icon" aria-hidden="true">+</span></summary><div class="approach-content"><p>Bring the details together. Refine the timing, balance the sound, and give the final edit a cohesive look from the first frame to the last.</p><div class="mini-tags"><span>Color & sound</span><span>Final polish</span></div></div></details>
+      </div>
+      <div class="toolbox"><span class="eyebrow">IN MY TOOLKIT</span><div><span class="tool-mark ae">Ae</span> After Effects</div><div><span class="tool-mark pr">Pr</span> Premiere Pro</div><div><span class="tool-mark resolve">◉</span> DaVinci Resolve</div><div><span class="tool-mark ps">Ps</span> Photoshop</div></div>
+    </section>
+    <section id="contact" class="contact section-shell section-space" aria-labelledby="contact-title">
+      <div class="contact-top"><p class="eyebrow"><span class="status-dot"></span> GOT SOMETHING IN MIND?</p><span class="contact-symbol" aria-hidden="true">✳</span></div>
+      <h2 id="contact-title">Let’s make<br>something <span class="serif-word">move.</span><span class="contact-arrow" aria-hidden="true">↗</span></h2>
+      <div class="contact-bottom"><p>A rough idea. A folder of footage. A big ambition.<br>Tell me what you’re thinking — let’s take it from there.</p><a class="button button-dark" href="https://www.facebook.com/andreiG7777/" target="_blank" rel="noopener noreferrer">Start a conversation <span aria-hidden="true">↗</span></a></div>
+      <div class="contact-links"><a href="https://www.facebook.com/andreiG7777/" target="_blank" rel="noopener noreferrer">Facebook <span aria-hidden="true">↗</span></a><a href="https://x.com/AndreiG_17" target="_blank" rel="noopener noreferrer">Twitter / X <span aria-hidden="true">↗</span></a><a href="viber://chat?number=%2B639939241678">Viber <span>+63 993 924 1678 ↗</span></a><button type="button" class="copy-number" hidden>Copy number <span aria-hidden="true">⧉</span></button></div>
+    </section>
+  </main>
+  <footer class="site-footer section-shell"><a class="wordmark" href="#home" aria-label="AndreiG home">andrei<span>g</span><span class="logo-dot">.</span></a><p>© <span id="year">2026</span> AndreiG. Crafted with intention.</p><a href="#home" class="back-top">BACK TO TOP <span aria-hidden="true">↑</span></a></footer>
+  <dialog class="video-modal" aria-labelledby="video-title">
+    <div class="modal-heading"><div><p class="eyebrow">NOW PLAYING</p><h2 id="video-title">Showreel</h2></div><button class="modal-close icon-button" type="button" aria-label="Close video">✕</button></div>
+    <div class="video-container"></div>
+    <div class="modal-footer"><span>Press Esc to close</span><a class="youtube-link" href="https://www.youtube.com/watch?v=iizK6iHbyCE" target="_blank" rel="noopener noreferrer">Watch on YouTube <span aria-hidden="true">↗</span></a></div>
+  </dialog>
+  <div class="toast" role="status"></div>
 </body>
 </html>
-
-<!-- test -->
