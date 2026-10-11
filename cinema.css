@@ -1,0 +1,42 @@
+/* Cinema: editorial poster compositions, retaining the original card-grid view. */
+.video-layout-toolbar{display:flex;justify-content:space-between;align-items:center;gap:20px;border-top:1px solid var(--line);padding:22px 0 30px}
+.video-layout-toolbar>.mono{font-size:10px;color:var(--muted)}.archive-count{color:var(--accent);margin-left:18px}
+.cinema-detail{display:none}
+.projects.cinema-wall{gap:44px 28px}
+.projects.cinema-wall>li:first-child{grid-column:auto}
+.projects.cinema-wall>li.cinema-lead,.projects.cinema-wall>li.cinema-wide{grid-column:1/-1}
+.projects.cinema-wall .project{display:block;padding:0;aspect-ratio:1.25;border:0;border-radius:2px;background:#151518;overflow:hidden}
+.projects.cinema-wall .p-thumb{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto;object-fit:cover;opacity:.82;transform:scale(1.01);transition:transform .9s cubic-bezier(.2,.7,.2,1),opacity .5s}
+.projects.cinema-wall .project:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#0004,transparent 30%,#0004 50%,#050507f5);z-index:1;pointer-events:none}
+.projects.cinema-wall .p-title{position:absolute;left:30px;right:90px;bottom:82px;padding:0;margin:0;font-size:clamp(35px,4.4vw,65px);line-height:.95;color:#fff;letter-spacing:-.045em;z-index:2}
+.projects.cinema-wall .p-cat{position:absolute;top:24px;right:24px;padding:8px 12px;margin:0;font:9px var(--mono);color:#fff;border:1px solid #ffffff40;border-radius:30px;background:#0005;backdrop-filter:blur(10px);z-index:2}
+.projects.cinema-wall .p-idx{top:24px;left:30px;border:0;border-radius:0;padding:0;background:none;backdrop-filter:none;font:12px var(--mono);letter-spacing:.15em}
+.projects.cinema-wall .p-idx:before{content:"FILM / ";color:#fffc}
+.projects.cinema-wall .p-idx:after{content:none}
+.projects.cinema-wall>li:first-child .p-idx:after{content:none}
+.projects.cinema-wall .p-arrow{display:none}
+.projects.cinema-wall .cinema-detail{position:absolute;z-index:2;bottom:27px;left:30px;right:30px;display:flex;align-items:center;justify-content:space-between;gap:15px;padding-top:17px;border-top:1px solid #ffffff45;color:#fffd;font:9px var(--mono);letter-spacing:.09em;text-transform:uppercase}
+.projects.cinema-wall .cinema-detail span:last-child{color:var(--film-accent)}
+.projects.cinema-wall .project:after{top:auto;bottom:84px;right:30px;width:52px;height:52px;background:#ffffff15;backdrop-filter:blur(8px);z-index:2}
+.projects.cinema-wall .cinema-lead .project{aspect-ratio:2.05}
+.projects.cinema-wall .cinema-lead .p-title{font-size:clamp(48px,7.4vw,112px);bottom:95px;left:40px;right:120px;font-family:var(--serif)!important;font-style:italic!important;font-weight:400}
+.projects.cinema-wall .cinema-lead .p-idx{left:40px}
+.projects.cinema-wall .cinema-lead .p-idx:before{content:"IN THE SPOTLIGHT / "}
+.projects.cinema-wall .cinema-lead .cinema-detail{left:40px;right:40px}
+.projects.cinema-wall .cinema-lead .project:after{width:76px;height:76px;right:40px;bottom:91px;font-size:23px}
+.projects.cinema-wall .cinema-wide .project{aspect-ratio:2.4}
+.projects.cinema-wall .project:hover .p-thumb,.projects.cinema-wall .project:focus-visible .p-thumb{transform:scale(1.06);opacity:1}
+.projects.cinema-wall .project:hover:after,.projects.cinema-wall .project:focus-visible:after{background:var(--film-accent);border-color:var(--film-accent);color:#050507}
+.projects.cinema-wall .project:focus-visible{outline:3px solid var(--accent);outline-offset:-4px}
+@media(max-width:760px){
+.video-layout-toolbar{flex-wrap:wrap;padding:18px 0 25px;gap:18px}.video-layout-toolbar>.mono{font-size:8px}.archive-count{margin-left:10px}
+.projects.cinema-wall{gap:22px}
+.projects.cinema-wall .project,.projects.cinema-wall .cinema-lead .project,.projects.cinema-wall .cinema-wide .project{aspect-ratio:1.05}
+.projects.cinema-wall .p-title,.projects.cinema-wall .cinema-lead .p-title{left:20px;right:76px;bottom:82px;font-size:39px}
+.projects.cinema-wall .cinema-lead .p-title{font-size:51px}
+.projects.cinema-wall .p-idx,.projects.cinema-wall .cinema-lead .p-idx{left:20px;top:20px;font-size:8px}
+.projects.cinema-wall .p-cat{right:18px;top:16px;font-size:8px;padding:6px 9px}
+.projects.cinema-wall .cinema-detail,.projects.cinema-wall .cinema-lead .cinema-detail{left:20px;right:20px;bottom:23px;font-size:8px}
+.projects.cinema-wall .project:after,.projects.cinema-wall .cinema-lead .project:after{width:44px;height:44px;right:20px;bottom:83px;font-size:15px}
+}
+@media(prefers-reduced-motion:reduce){.projects.cinema-wall .p-thumb{transition:none}}

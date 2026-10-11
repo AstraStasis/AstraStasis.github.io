@@ -1,0 +1,21 @@
+# Development and local utilities
+preview.py
+preview.cmd
+scripts/
+
+# Working source sketches and backups
+drawing sketch/
+*.png~
+
+# Raw master artwork files (exceed Cloudflare Pages 25MB limit; site uses web-optimized assets/artworks/)
+ADO FINAL.png
+Ai Hoshino FINAL.png
+Artoria Pendragon.jpg
+EYE GAZE FINAL.jpg
+Raiden FINAL.png
+Raining after all FINAL.jpg
+Reze FINAL.png
+Ryo Yamada FINAL.png
+TACHYON FINAL.png
+makima FINAL.png
+close up eye august to blur.jpg
