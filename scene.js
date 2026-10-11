@@ -407,8 +407,8 @@
   const KF = [
     { x: 1.25, y: 0.05, z: 0.0, s: 1.1, distort: 0.3, freq: 1.1, hue: 0.0, bright: 1.0, ring: 1.0 }, // hero
     { x: 1.9, y: 0.3, z: -0.6, s: 0.8, distort: 0.18, freq: 1.7, hue: 0.12, bright: 0.85, ring: 0.6 }, // about
-    { x: 0.0, y: 0.0, z: -3.5, s: 1.5, distort: 0.42, freq: 0.9, hue: 0.3, bright: 0.45, ring: 0.25 }, // artworks
     { x: -1.4, y: 0.2, z: -2, s: 1.1, distort: 0.35, freq: 1.2, hue: 0.4, bright: 0.5, ring: 0.4 }, // motion
+    { x: 0.0, y: 0.0, z: -3.5, s: 1.5, distort: 0.42, freq: 0.9, hue: 0.3, bright: 0.45, ring: 0.25 }, // artworks
     { anchor: ".sphere-wrap", z: -0.5, sFactor: 0.5, distort: 0.25, freq: 2.0, hue: 0.55, bright: 1.0, ring: 0.0 }, // toolkit: sits inside the tag sphere
     { x: 1.7, y: 0.5, z: -0.8, s: 1.0, distort: 0.5, freq: 1.3, hue: 0.8, bright: 0.7, ring: 0.9 }, // contact
   ];
@@ -450,7 +450,8 @@
     frameId = 0;
     if (W.sceneReady && (W.paused || W.modal || document.hidden)) return;
     const dt = Math.min(timer.getDelta(), 0.05);
-    time += dt * timeScale;
+    const surge = W.universeBoost || 0;
+    time += dt * timeScale * (1 + surge * 3);
     const k = 1 - Math.exp(-dt * 3.2);
 
     // Blend between the two keyframes around the current scroll position
@@ -487,10 +488,10 @@
 
     // Transforms
     group.position.set(state.x, state.y, state.z);
-    group.scale.setScalar(state.s * (1 + blobUniforms.uPulse.value * 0.06));
+    group.scale.setScalar(state.s * (1 + blobUniforms.uPulse.value * 0.06 + surge*.3));
     tiltX += (W.pointer.ny * 0.35 - tiltX) * k;
     tiltY += (W.pointer.nx * 0.5 - tiltY) * k;
-    group.rotation.set(-tiltX, tiltY, 0);
+    group.rotation.set(-tiltX + Math.sin(time)*surge*.25, tiltY + surge*.6, Math.sin(time*.6)*surge*.2);
     blob.rotation.y += dt * 0.12 * timeScale;
     shell.rotation.y -= dt * 0.05 * timeScale;
     shell.rotation.x += dt * 0.03 * timeScale;
@@ -505,8 +506,9 @@
       object.rotation.z=(j===3?-.5:side*.12)+Math.sin(time*.22+j)*.08;
     });
     skyUniforms.uHue.value = state.hue;
-    skyUniforms.uPulse.value = blobUniforms.uPulse.value;
-    lightOrbits.rotation.y = time * .035;
+    skyUniforms.uPulse.value = blobUniforms.uPulse.value + surge*2;
+    lightOrbits.rotation.y = time * .035 + surge*Math.sin(time*.6);
+    lightOrbits.scale.setScalar(1+surge*.5);
     glints.forEach(({glint, radius, orbit}, j) => {
       const angle = time * (.23 + j * .09) + j * 2;
       glint.position.set(Math.cos(angle)*radius, Math.sin(angle)*radius, 0);
@@ -524,9 +526,9 @@
 
     // Uniforms
     blobUniforms.uTime.value = time;
-    blobUniforms.uDistort.value = state.distort;
+    blobUniforms.uDistort.value = state.distort + surge*.4;
     blobUniforms.uFreq.value = state.freq;
-    blobUniforms.uHue.value = state.hue;
+    blobUniforms.uHue.value = state.hue + surge*.35;
     blobUniforms.uBright.value = state.bright;
     blobUniforms.uMouseStr.value = mouseStr;
     blobUniforms.uLight.value.set(W.pointer.nx * 3, W.pointer.ny * 3 + 1, 2.5);

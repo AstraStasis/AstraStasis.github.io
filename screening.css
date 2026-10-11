@@ -1,0 +1,70 @@
+/* An illuminated film carousel with neighboring scenes in perspective. */
+.screening-room{position:relative;isolation:isolate;overflow:hidden;padding:72px 0 0;border:1px solid #ffffff20;border-radius:12px;background:#08090f;perspective:1400px}
+.screening-ambience{position:absolute;inset:-15%;width:130%;height:130%;object-fit:cover;filter:blur(65px) saturate(1.3);opacity:.23;z-index:-2;pointer-events:none}
+.screening-room:before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at 50% 28%,transparent,#08090ff2 75%);pointer-events:none}
+.screening-orbits{position:absolute;width:85%;height:55%;left:7.5%;top:20px;border:1px solid #ffffff18;border-radius:50%;transform:rotate(-13deg);pointer-events:none}
+.screening-orbits:before,.screening-orbits:after{content:"";position:absolute;inset:9%;border:1px solid #ffffff12;border-radius:50%;transform:rotate(25deg)}
+.screening-orbits:after{inset:-8%;transform:rotate(-15deg)}
+.screening-top{position:absolute;inset:20px 30px auto;justify-content:flex-end;padding:0}
+.screening-count{font-size:13px;letter-spacing:.1em;color:var(--fg)}
+.screening-poster{width:70%;margin:0 auto;aspect-ratio:1.8;z-index:3;border:1px solid #ffffff60;border-radius:7px;box-shadow:0 35px 90px #000a,0 0 35px #ff805712;transform:rotateY(var(--screen-lean,0deg));transform-origin:center;transition:transform .35s}
+.screening-poster>img{object-fit:cover}
+.screening-caption{left:28px;right:28px;bottom:24px;gap:8px}
+.screening-caption strong{font-size:clamp(38px,5.4vw,76px)}
+.screening-genre{font-size:12px;color:#eee}
+.screening-play{width:62px;height:62px;border-radius:50%;font-size:0;padding:0;display:grid;place-items:center;background:#ff8057;color:#08090f;border-color:transparent;box-shadow:0 0 28px #ff805750}
+.screening-play:after{content:none}
+.screening-wing{position:absolute;top:105px;width:34%;aspect-ratio:1.32;z-index:1;border:1px solid #ffffff30;border-radius:7px;overflow:hidden;background:#171820;box-shadow:0 20px 50px #0008;transition:filter .3s,transform .4s;filter:brightness(.5)}
+.screening-wing img{width:100%;height:100%;object-fit:cover}
+.screening-wing span{position:absolute;bottom:16px;left:18px;right:18px;font-size:14px;text-align:left;color:white;text-shadow:0 2px 10px #000}
+.screening-wing:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent,#0006);pointer-events:none}
+.wing-prev{left:-13%;transform:rotateY(32deg) rotateZ(-5deg)}
+.wing-next{right:-13%;transform:rotateY(-32deg) rotateZ(5deg)}
+.screening-wing:hover{filter:brightness(.85)}
+.screening-navigation{position:relative;margin:28px auto 0;padding:15px 0;width:70%;border-bottom:1px solid #ffffff20}
+.screening-navigation:after{content:"";position:absolute;bottom:-1px;left:0;right:0;height:2px;background:var(--accent);transform:scaleX(var(--film-progress));transform-origin:left;transition:transform .4s}
+.screening-navigation>span{font-size:0}
+.screening-navigation>span:after{content:"← Browse films →";font-size:12px;color:var(--muted)}
+.screening-navigation button{background:#ffffff08}
+.screening-rail{margin-top:10px;padding:22px 30px 28px;gap:16px;background:#05050755}
+.screening-rail button{flex-basis:135px;opacity:.45;transition:opacity .25s,transform .25s}
+.screening-rail img{width:135px;height:76px;border-radius:4px}
+.screening-rail button[aria-pressed="true"]{opacity:1;transform:translateY(-4px)}
+.screening-rail span{font-size:11px}
+@media(max-width:760px){
+.screening-room{padding-top:60px}
+.screening-top{inset:20px 20px auto}.screening-count{font-size:11px}
+.screening-poster{width:82%;aspect-ratio:.95}
+.screening-caption{left:17px;right:17px;bottom:19px;grid-template-columns:1fr}
+.screening-caption strong{font-size:39px}
+.screening-play{width:43px;height:43px;margin-top:10px}.screening-play:after{font-size:15px}
+.screening-wing{top:106px;width:54%;aspect-ratio:.8}
+.wing-prev{left:-37%}.wing-next{right:-37%}
+.screening-wing span{display:none}
+.screening-navigation{width:82%;margin-top:18px;padding:10px 0}
+.screening-navigation>span:after{font-size:10px}
+.screening-rail{padding:20px 16px;gap:10px}
+.screening-rail button{flex-basis:105px}.screening-rail img{width:105px;height:64px}
+}
+body.motion-paused .screening-poster,body.motion-paused .screening-navigation:after{transition:none}
+@media(prefers-reduced-motion:reduce){.screening-poster,.screening-wing,.screening-rail button,.screening-navigation:after{transition:none}}
+
+/* Motion stays local to the film stage and sleeps when it is off screen. */
+.screening-play{display:flex;align-items:center;justify-content:center;line-height:1;flex-shrink:0}
+.screening-play svg{display:block;width:25px;height:25px;overflow:visible}
+.screening-orbits{animation:screening-orbit 24s ease-in-out infinite alternate;animation-play-state:paused}
+.screening-room.screening-active:not(.screening-still) .screening-orbits{animation-play-state:running}
+.screening-room:after{content:"";position:absolute;top:35px;left:15%;width:70%;height:1px;background:linear-gradient(90deg,transparent,#ff8057b0,transparent);transform-origin:center;pointer-events:none;animation:screening-light 5s ease-in-out infinite alternate;animation-play-state:paused}
+.screening-room.screening-active:not(.screening-still):after{animation-play-state:running}
+@keyframes screening-orbit{from{transform:rotate(-13deg) scale(.96)}to{transform:rotate(9deg) scale(1.04)}}
+@keyframes screening-light{from{opacity:.25;transform:scaleX(.45)}to{opacity:.9;transform:scaleX(1)}}
+.screening-still *,.screening-still *:before,.screening-still *:after,.screening-still:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+.screening-still .screening-poster,.screening-still .screening-poster:hover>img{transform:none}
+@media(max-width:760px){
+ .screening-play svg{width:20px;height:20px}
+ .screening-still .screening-wing,.screening-still .screening-orbits,.screening-still:after{display:none}
+ .screening-still .screening-poster{width:calc(100% - 28px);aspect-ratio:1.15}
+ .screening-still .screening-navigation{width:calc(100% - 28px)}
+ .screening-still .screening-rail button[aria-pressed="true"]{transform:none}
+}
+@media(prefers-reduced-motion:reduce){.screening-room *,.screening-room:after{animation:none!important;transition:none!important}}

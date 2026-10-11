@@ -72,17 +72,36 @@
  const projects=document.getElementById("projects"),items=[...projects.children];
  const toolbar=document.querySelector(".video-layout-toolbar"),switcher=toolbar.querySelector(".view-switch");
  const theater=document.createElement("div");theater.className="screening-room";
- theater.innerHTML='<div class="screening-top"><span>Take a seat. Pick a film.</span><span class="screening-count"></span></div><button type="button" class="screening-poster"><img alt=""><span class="screening-shade"></span><span class="screening-caption"><span class="screening-genre"></span><strong></strong><span class="screening-play">Play film &#9654;</span></span></button><div class="screening-navigation"><button type="button" class="film-prev" aria-label="Previous film">&#8592;</button><span>Explore the collection</span><button type="button" class="film-next" aria-label="Next film">&#8594;</button></div><div class="screening-rail" role="group" aria-label="Select a film"></div><span class="sr-only screening-status" role="status"></span>';
+ theater.innerHTML='<div class="screening-top"><span class="screening-count"></span></div><button type="button" class="screening-poster"><img alt=""><span class="screening-shade"></span><span class="screening-caption"><span class="screening-genre"></span><strong></strong><span class="screening-play" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M7 4.5 20 12 7 19.5Z" fill="currentColor"/></svg></span></span></button><div class="screening-navigation"><button type="button" class="film-prev" aria-label="Previous film">&#8592;</button><span>Explore the collection</span><button type="button" class="film-next" aria-label="Next film">&#8594;</button></div><div class="screening-rail" role="group" aria-label="Select a film"></div><span class="sr-only screening-status" role="status"></span>';
  projects.before(theater);
+ const ambience=document.createElement("img");ambience.className="screening-ambience";ambience.alt="";theater.prepend(ambience);
+ const constellation=document.createElement("div");constellation.className="screening-orbits";constellation.setAttribute("aria-hidden","true");theater.prepend(constellation);
+ const wings=[-1,1].map(direction=>{
+   const b=document.createElement("button");b.type="button";b.className="screening-wing "+(direction<0?"wing-prev":"wing-next");
+   b.innerHTML='<img alt=""><span></span>';b.addEventListener("click",()=>step(direction));
+   theater.querySelector(".screening-poster").before(b);return b;
+ });
+ let posterTicket=0,lastPoster=-1,direction=1;
+ const reduced=matchMedia("(prefers-reduced-motion: reduce)");
+ const motionOff=()=>Boolean(window.WORLD?.paused||reduced.matches);
+ const stopTransitions=()=>theater.getAnimations({subtree:true}).filter(a=>!(a instanceof CSSAnimation)).forEach(a=>a.cancel());
+ function syncMotion(){
+   theater.classList.toggle("screening-still",motionOff());
+   if(motionOff()){stopTransitions();screen.style.setProperty("--screen-lean","0deg");cancelAnimationFrame(leanFrame);leanFrame=0;rail.scrollTo({left:rail.scrollLeft,behavior:"instant"});}
+ }
+ window.addEventListener("portfolio:resume",syncMotion);
+ reduced.addEventListener("change",syncMotion);
+ const roomObserver=new IntersectionObserver(([entry])=>theater.classList.toggle("screening-active",entry.isIntersecting),{threshold:.1});
+ roomObserver.observe(theater);
  const option=document.createElement("button");option.type="button";option.dataset.videoView="screening";option.textContent="Screening room";switcher.prepend(option);
  const rail=theater.querySelector(".screening-rail");
- let active=0,mode="screening";
+ let active=Math.max(0,items.findIndex(li=>li.querySelector(".project").dataset.title==="Motion 02")),mode="screening";
  const checkedStills=new Set();
  const visible=()=>items.map((li,i)=>li.hidden?-1:i).filter(i=>i>=0);
  const thumbs=items.map((li,i)=>{
    const a=li.querySelector(".project"),b=document.createElement("button");b.type="button";
    const img=a.querySelector("img").cloneNode();img.alt="";const label=document.createElement("span");label.textContent=a.dataset.title;
-   b.append(img,label);b.addEventListener("click",()=>{active=i;render();});rail.append(b);return b;
+   b.append(img,label);b.addEventListener("click",()=>{direction=i<active?-1:1;active=i;render();});rail.append(b);return b;
  });
  function render(){
    const list=visible();if(!list.includes(active))active=list[0];
@@ -94,18 +113,54 @@
      probe.src="https://img.youtube.com/vi/"+a.dataset.video+"/maxresdefault.jpg";
    }
    const img=theater.querySelector(".screening-poster>img");
-   img.src=a.querySelector("img").src;img.alt=a.dataset.title+" video still";
+   const ticket=++posterTicket;
+   const still=new Image();still.src=a.querySelector("img").src;
+   still.decode().then(()=>{if(ticket===posterTicket){
+     img.src=still.src;ambience.src=still.src;
+     if(lastPoster!==active&&lastPoster!==-1&&!motionOff()){
+       stopTransitions();
+       const timing={duration:680,easing:"cubic-bezier(.16,1,.3,1)"};
+       screen.animate([
+         {transform:`translateX(${direction*95}px) rotateY(${direction*-9}deg) scale(.94)`,opacity:.35},
+         {transform:"translateX(0) rotateY(0) scale(1)",opacity:1}
+       ],timing);
+       theater.querySelector(".screening-caption").animate([
+         {transform:`translateX(${direction*28}px)`,opacity:0},
+         {transform:"translateX(0)",opacity:1}
+       ],{...timing,duration:800});
+       wings.forEach(wing=>wing.animate([
+         {translate:`${direction*45}px 0`,opacity:.25},
+         {translate:"0 0",opacity:1}
+       ],{...timing,duration:850}));
+       ambience.animate([{opacity:.08},{opacity:.23}],{duration:900});
+     }
+     lastPoster=active;
+   }}).catch(()=>{if(ticket===posterTicket)img.src=still.src;});
+   img.alt=a.dataset.title+" video still";
+   wings.forEach((b,j)=>{
+     const index=list[(list.indexOf(active)+(j===0?-1:1)+list.length)%list.length],link=items[index].querySelector(".project");
+     b.querySelector("img").src=link.querySelector("img").src;b.querySelector("span").textContent=link.dataset.title;
+     b.setAttribute("aria-label","Select "+link.dataset.title);b.hidden=list.length<2;
+   });
+   theater.style.setProperty("--film-progress",(list.indexOf(active)+1)/list.length);
    theater.querySelector("strong").textContent=a.dataset.title;
    theater.querySelector(".screening-genre").textContent=a.dataset.subtitle;
    theater.querySelector(".screening-count").textContent=String(list.indexOf(active)+1).padStart(2,"0")+" / "+String(list.length).padStart(2,"0");
    theater.querySelector(".screening-poster").setAttribute("aria-label","Play "+a.dataset.title);
    theater.querySelector(".screening-status").textContent=a.dataset.title+", "+a.dataset.subtitle;
    thumbs.forEach((b,i)=>{b.hidden=!list.includes(i);b.setAttribute("aria-pressed",String(i===active));});
-   const selected=thumbs[active];rail.scrollTo({left:Math.max(0,selected.offsetLeft-rail.offsetLeft-rail.clientWidth/2+selected.offsetWidth/2),behavior:window.WORLD?.paused?"instant":"smooth"});
+   const selected=thumbs[active];rail.scrollTo({left:Math.max(0,selected.offsetLeft-rail.offsetLeft-rail.clientWidth/2+selected.offsetWidth/2),behavior:motionOff()?"instant":"smooth"});
  }
- function step(d){const list=visible();active=list[(list.indexOf(active)+d+list.length)%list.length];render();}
+ function step(d){direction=d;const list=visible();active=list[(list.indexOf(active)+d+list.length)%list.length];render();}
  theater.querySelector(".film-prev").addEventListener("click",()=>step(-1));
  theater.querySelector(".film-next").addEventListener("click",()=>step(1));
+ const screen=theater.querySelector(".screening-poster");
+ let leanFrame=0;
+ screen.addEventListener("pointermove",e=>{
+   if(e.pointerType!=="mouse"||motionOff()||leanFrame)return;
+   leanFrame=requestAnimationFrame(()=>{const r=screen.getBoundingClientRect();screen.style.setProperty("--screen-lean",(e.clientX-r.left-r.width/2)/r.width*4+"deg");leanFrame=0;});
+ });
+ screen.addEventListener("pointerleave",()=>{cancelAnimationFrame(leanFrame);leanFrame=0;screen.style.setProperty("--screen-lean","0deg");});
  theater.querySelector(".screening-poster").addEventListener("click",e=>{
    items[active].querySelector(".project").click();
    document.getElementById("videoViewer").addEventListener("close",()=>theater.querySelector(".screening-poster").focus({preventScroll:true}),{once:true});
@@ -121,7 +176,7 @@
  document.querySelectorAll("[data-video-filter]").forEach(b=>b.addEventListener("click",()=>{render();setView(mode);}));
  // Keep the selected still in sync when the higher-resolution YouTube image arrives.
  items.forEach((li,i)=>new MutationObserver(()=>{if(i===active)theater.querySelector(".screening-poster>img").src=li.querySelector("img").src;}).observe(li.querySelector("img"),{attributes:true,attributeFilter:["src"]}));
- render();setView("screening");
+ syncMotion();render();setView("screening");
  // A small constellation burst accompanies the existing interactive orb.
  document.getElementById("orbPulse").addEventListener("click",e=>{
    if(window.WORLD?.paused)return;

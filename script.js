@@ -64,6 +64,7 @@
     if (!fine.matches || W.paused || W.modal) { cursor.classList.remove("active"); preview.hidden = true; return; }
     const target = e.target.closest("[data-cursor]");
     cursor.classList.toggle("active", !!target);
+    cursor.classList.toggle("cursor-gd", target?.dataset.cursor === "Jump!");
     if (target) { $("cursorLabel").textContent = target.dataset.cursor; cursor.style.transform = "translate(" + (e.clientX - 32) + "px," + (e.clientY - 32) + "px)"; }
     const project = e.target.closest(".project");
     preview.hidden = !project;
@@ -77,7 +78,7 @@
   }, { passive: true });
   document.documentElement.addEventListener("pointerleave", () => { cursor.classList.remove("active"); preview.hidden = true; });
   $("orbPulse").hidden = false;
-  $("orbPulse").addEventListener("click", () => { W.hueShift += .16; W.pulse = 1; });
+  $("orbPulse").addEventListener("click", () => { if (!W.paused) W.pulse = 1; });
   let audioContext, soundOn = false;
   const sound = $("soundBtn"); sound.hidden = false;
   async function syncAudio() {

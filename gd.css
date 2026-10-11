@@ -1,0 +1,15 @@
+.gd-text>span{display:inline-block;transform-origin:center;will-change:transform}
+.gd-text>span:empty{width:.2em}
+#heroTitle>.line{transition:opacity .3s}
+#heroTitle:has(.gd-trigger.is-playing)>.line:not(:last-child){opacity:.18}
+#heroTitle:has(.gd-trigger.is-playing) .hero-period{opacity:0}
+.gd-trigger.is-playing .gd-text{opacity:1;filter:none}
+.gd-trigger .gd-stage{height:auto;aspect-ratio:800/400;inset:auto 0 0;bottom:0;overflow:clip}
+.gd-camera{position:absolute;inset:0;transform-origin:50% 85%;will-change:transform}
+.gd-world{display:block;width:100%;height:100%;overflow:visible}
+.gd-ground{stroke:#fff;stroke-width:1.5;fill:none;opacity:.75}
+.gd-reference-obstacle{fill:#fff;stroke:none;filter:drop-shadow(0 0 3px #ffffff60)}
+.gd-player{fill:#fff;filter:drop-shadow(0 0 3px #ffffff80)}
+.gd-morph-shell{position:absolute;border:1px solid #fff;pointer-events:none;box-shadow:0 0 15px #ffffff15;opacity:0}
+.gd-trigger .gd-apex-text{top:12%;left:60%;font-family:var(--sans);font-size:clamp(11px,1.4vw,18px);text-shadow:0 0 15px #fff8;letter-spacing:0}
+@media(prefers-reduced-motion:reduce){.gd-trigger.is-playing .gd-text{opacity:1}.gd-trigger.is-playing .gd-world{display:none}.gd-trigger .gd-apex-text{top:-25px}}

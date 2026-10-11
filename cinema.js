@@ -4,7 +4,7 @@
   const filters = document.querySelector(".video-filters");
   const toolbar = document.createElement("div");
   toolbar.className = "video-layout-toolbar";
-  toolbar.innerHTML = '<span class="mono">THE MOTION ARCHIVE <span class="archive-count">11 FILMS</span></span><div class="view-switch" role="group" aria-label="Video layout"><button type="button" data-video-view="cinema" aria-pressed="true">Cinema</button><button type="button" data-video-view="cards" aria-pressed="false">Card grid</button></div>';
+  toolbar.innerHTML = '<span class="mono">THE MOTION ARCHIVE <span class="archive-count">11 FILMS</span></span><div class="view-switch" role="group" aria-label="Video layout"><button type="button" data-video-view="cinema" aria-pressed="true">Cinema</button></div>';
   filters.after(toolbar);
   const categories = {motion:"Motion graphics", dance:"Dance films", logos:"Logo reveals", education:"Stories & ideas"};
   const items = [...projects.children];
