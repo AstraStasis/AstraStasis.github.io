@@ -106,6 +106,9 @@
  function render(){
    const list=visible();if(!list.includes(active))active=list[0];
    const a=items[active].querySelector(".project");
+   const palette=window.FILM_PALETTES?.[a.dataset.video]||["112,159,189","148,118,170"];
+   theater.style.setProperty("--film-light",palette[0]);
+   theater.style.setProperty("--film-secondary",palette[1]);
    if(!checkedStills.has(a.dataset.video)){
      checkedStills.add(a.dataset.video);
      const probe=new Image(),index=active;

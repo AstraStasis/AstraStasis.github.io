@@ -1,0 +1,76 @@
+/* Readable foreground, recurring orbital lines, and a glimpse of the process. */
+.hero{isolation:isolate}
+.hero:before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,#050507cf 0%,#0505078c 37%,#05050720 73%,transparent),linear-gradient(0deg,#05050780,transparent 55%)}
+.hero-title{line-height:.94;text-shadow:0 3px 26px #0004}
+.hero-sub{color:#e0dcd8}
+.hud-logo{font-size:30px}
+.hud-logo .logo-word{transition:scale .4s cubic-bezier(.2,.8,.2,1)}
+.hud-logo:hover .logo-word{scale:1.07}
+.hud-logo:after{content:"";position:absolute;width:3px;height:3px;border-radius:50%;background:var(--accent);opacity:0;translate:0 25px;transition:opacity .3s}
+.hud-logo:hover:after,.hud-logo:focus-visible:after{opacity:1}
+.chapter-bridge{position:relative;max-width:1480px;margin:0 auto;height:76px;padding:0 var(--pad);pointer-events:none;overflow:hidden}
+.chapter-bridge svg{width:100%;height:76px;overflow:visible;fill:none;stroke-width:1}
+.bridge-base{stroke:#ffffff13}.bridge-trace{stroke:#d49875;stroke-opacity:.48;stroke-dasharray:1;stroke-dashoffset:calc(1 - var(--journey,0))}
+.chapter-bridge>span{position:absolute;left:var(--pad);top:5px;font:9px var(--mono);color:var(--dim);letter-spacing:.15em}
+.chapter-bridge>i{position:absolute;left:50%;top:27px;width:9px;height:9px;border:1px solid #d4987570;border-radius:50%;background:#101016}
+.creative-desk{display:grid;grid-template-columns:.85fr 1.25fr .65fr;gap:35px;align-items:center;margin-top:65px;padding:32px 0}
+.desk-sketch,.desk-edit{display:block;min-width:0;padding:18px;background:#101014e8;border:1px solid #ffffff20;box-shadow:0 18px 40px #0003;border-radius:4px;transition:transform .4s,border-color .4s}
+.desk-sketch{transform:rotate(-4deg)}.desk-edit{transform:rotate(2deg)}
+.desk-sketch:hover,.desk-edit:hover{transform:rotate(0) translateY(-5px);border-color:#ff9b7570}
+.desk-eyebrow{display:block;font:9px var(--mono);letter-spacing:.14em;color:var(--muted);margin-bottom:18px}
+.desk-paper{position:relative;aspect-ratio:1.1;overflow:hidden;background:#ded9d1}
+.desk-paper img{width:100%;height:100%;object-fit:cover;display:block}
+.desk-paper .desk-finish{position:absolute;inset:0;clip-path:polygon(65% 0,100% 0,100% 100%,35% 100%)}
+.desk-caption{display:flex;justify-content:space-between;gap:10px;margin-top:16px;font-size:12px;color:#dedad3}.desk-caption b{color:var(--accent);font-weight:400}
+.edit-monitor{position:relative;aspect-ratio:2;overflow:hidden;background:#050507}
+.edit-monitor img{width:100%;height:100%;object-fit:cover;opacity:.85}
+.edit-monitor>span{position:absolute;bottom:8px;left:10px;font:8px var(--mono);letter-spacing:.1em}
+.edit-monitor>i{position:absolute;inset:13%;border:1px solid #ffffff40}
+.mini-timeline{position:relative;margin-top:14px;padding:12px 0 2px;background:repeating-linear-gradient(90deg,transparent 0 29px,#ffffff10 30px 31px)}
+.mini-timeline>div{display:flex;gap:4px;margin-bottom:4px;height:16px}
+.mini-timeline i{display:block;background:#a887c054;border-top:1px solid #c4a5df90;width:28%;border-radius:2px}
+.mini-timeline i:nth-child(2){width:19%}.mini-timeline i:nth-child(3){width:36%}.mini-timeline>div:nth-child(2){padding-left:12%}.mini-timeline>div:nth-child(2) i{background:#82adbd4d;border-color:#9cc3d180}
+.mini-timeline>.audio-track{height:12px;background:repeating-linear-gradient(90deg,#789f8050 0 2px,transparent 2px 4px);border-block:1px solid #789f8050;margin:6px 5% 0}
+.mini-timeline>b{position:absolute;top:0;bottom:0;left:58%;width:1px;background:#fba47f}
+.mini-timeline>b:before{content:"";position:absolute;left:-3px;top:0;border-inline:3px solid transparent;border-top:5px solid #fba47f}
+.desk-note{padding-left:10px;transform:rotate(-5deg)}
+.desk-note p{font:clamp(30px,3.4vw,49px)/1.05 var(--serif);letter-spacing:-.03em}.desk-note em{color:#e9ad8c}
+.desk-note svg{width:110px;height:50px;fill:none;stroke:#e9ad8c;stroke-width:1.2;stroke-linecap:round}
+.desk-note>span:last-child{font-size:11px;line-height:1.6;color:var(--muted)}
+.screening-room{--film-light:112,159,189;--film-secondary:148,118,170;background:radial-gradient(ellipse at 12% 38%,rgba(var(--film-light),.23),transparent 58%),radial-gradient(ellipse at 90% 48%,rgba(var(--film-secondary),.18),transparent 60%),#08090f;transition:background-color .6s}
+.screening-room:before{background:radial-gradient(ellipse at 50% 28%,transparent,#08090fdb 80%)}
+.screening-poster{box-shadow:0 35px 90px #000a,0 0 65px rgba(var(--film-light),.22);border-color:rgba(var(--film-light),.65)}
+.screening-room:after{background:linear-gradient(90deg,transparent,rgba(var(--film-light),.9),transparent)}
+.screening-navigation:after{background:rgb(var(--film-light))}
+.screening-orbits{border-color:rgba(var(--film-light),.24)}
+.contact{position:relative;isolation:isolate;overflow:hidden}
+.contact-system{position:absolute;right:-70px;top:45px;width:580px;height:580px;z-index:-1;pointer-events:none;opacity:.8;translate:none!important}
+.contact-sun{position:absolute;left:46%;top:46%;width:8%;height:8%;border-radius:50%;background:radial-gradient(circle at 30% 25%,#ffd8af,#bc6147 55%,#321d1d);box-shadow:0 0 75px #e78b4930}
+.contact-orbit{position:absolute;border:1px solid #c7977229;border-radius:50%;inset:32%;animation:contact-orbit 45s linear infinite;animation-play-state:paused}
+.contact-orbit>i{position:absolute;left:50%;top:-5px;width:10px;height:10px;border-radius:50%;background:radial-gradient(circle at 30% 20%,#b8dce0,#386171);box-shadow:0 0 18px #86b6bb30}
+.orbit-two{inset:18%;animation-duration:70s;animation-direction:reverse;rotate:115deg}.orbit-two>i{width:16px;height:16px;top:-8px;background:radial-gradient(circle at 30% 20%,#c5a2cc,#514468)}
+.orbit-three{inset:3%;animation-duration:100s;rotate:235deg}.orbit-three>i{width:7px;height:7px;top:-3px;background:#d1ad7d}
+.contact-system.in-view:not(.tab-hidden) .contact-orbit{animation-play-state:running}
+.system-coordinate{position:absolute;bottom:0;right:22%;font:8px var(--mono);letter-spacing:.25em;color:#bb967c70}
+@keyframes contact-orbit{to{transform:rotate(360deg)}}
+.contact-links{position:relative;background:linear-gradient(0deg,#050507e6,#05050700);padding-bottom:20px}
+.socials a{position:relative}.socials a:before{content:"";display:inline-block;width:5px;height:5px;border:1px solid #d1ad7d80;border-radius:50%;margin-right:8px;transition:background .3s,box-shadow .3s}.socials a:hover:before,.socials a:focus-visible:before{background:#e7b492;box-shadow:0 0 12px #e7b49280}
+.contact:has(.socials a:hover) .contact-sun{box-shadow:0 0 90px #e78b4960}
+.footer{background:radial-gradient(ellipse at 80% 0%,#211817,#050507 65%)}
+body.motion-paused .contact-orbit{animation-play-state:paused!important}
+body.motion-paused .hud-logo .logo-word,body.motion-paused .desk-sketch,body.motion-paused .desk-edit,body.motion-paused .socials a:before{transition:none}
+body.motion-paused .hud-logo:hover .logo-word{scale:1}
+@media(max-width:1000px){.creative-desk{grid-template-columns:1fr 1.2fr;gap:25px}.desk-note{grid-column:1/-1;display:flex;gap:25px;align-items:center;transform:none;padding:10px}.desk-note .desk-eyebrow{display:none}.desk-note p{font-size:32px}.contact-system{width:450px;height:450px;right:-130px;top:90px;opacity:.6}}
+@media(max-width:760px){
+ .hero:before{background:linear-gradient(0deg,#050507d4 0%,#050507a3 38%,#05050720 84%)}
+ .hud-logo{font-size:29px}
+ .chapter-bridge{height:42px}.chapter-bridge svg{height:42px}.chapter-bridge>i{top:12px;width:7px;height:7px}.chapter-bridge>span{font-size:7px}
+ .creative-desk{margin-top:38px;gap:18px;padding-inline:5px;grid-template-columns:1fr 1fr;align-items:start}
+ .desk-sketch,.desk-edit{padding:10px}.desk-eyebrow{font-size:7px;letter-spacing:.04em;margin-bottom:10px}.desk-caption{font-size:10px;line-height:1.4;margin-top:10px}.desk-caption b{display:none}
+ .desk-paper{aspect-ratio:.82}.edit-monitor{aspect-ratio:1.2}.mini-timeline{margin-top:8px;padding-top:5px}.mini-timeline>div{height:10px}.mini-timeline>.audio-track{height:8px}
+ .desk-note{gap:18px;padding:12px 0 0}.desk-note p{font-size:28px}.desk-note svg{width:50px}.desk-note>span:last-child{font-size:10px}
+ .contact-system{width:360px;height:360px;top:115px;right:-150px;opacity:.5}.system-coordinate{display:none}
+ .contact-system .contact-orbit{animation:none}
+ .socials{gap:15px}
+}
+@media(prefers-reduced-motion:reduce){.contact-orbit{animation:none}.hud-logo:hover .logo-word{scale:1}.desk-sketch:hover{transform:rotate(-4deg)}.desk-edit:hover{transform:rotate(2deg)}}

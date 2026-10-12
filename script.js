@@ -81,6 +81,21 @@
   $("orbPulse").addEventListener("click", () => { if (!W.paused) W.pulse = 1; });
   let audioContext, soundOn = false;
   const sound = $("soundBtn"); sound.hidden = false;
+  let orbitVoices=[];
+  function stopOrbitSound(){orbitVoices.forEach(({source,gain})=>{const now=audioContext.currentTime;gain.gain.cancelScheduledValues(now);gain.gain.setTargetAtTime(0,now,.035);try{source.stop(now+.18);}catch{}});orbitVoices=[];}
+  addEventListener('portfolio:orbit-phase',({detail})=>{
+    stopOrbitSound();
+    if(!soundOn||!audioContext||W.paused||document.hidden||!['entering','returning'].includes(detail))return;
+    const entering=detail==='entering',duration=entering?4.5:3.2,now=audioContext.currentTime;
+    // A rising air sweep and low expansion tone reverse into a soft landing.
+    const buffer=audioContext.createBuffer(1,audioContext.sampleRate*duration,audioContext.sampleRate),samples=buffer.getChannelData(0);
+    for(let i=0;i<samples.length;i++)samples[i]=(Math.random()*2-1)*.35;
+    const air=audioContext.createBufferSource();air.buffer=buffer;
+    const filter=audioContext.createBiquadFilter();filter.type='lowpass';filter.Q.value=.5;filter.frequency.setValueAtTime(entering?160:1800,now);filter.frequency.exponentialRampToValueAtTime(entering?2200:120,now+duration*.85);
+    const tone=audioContext.createOscillator();tone.type='sine';tone.frequency.setValueAtTime(entering?65:160,now);tone.frequency.exponentialRampToValueAtTime(entering?180:55,now+duration*.85);
+    [air,tone].forEach((source,i)=>{const gain=audioContext.createGain();gain.gain.setValueAtTime(0,now);gain.gain.linearRampToValueAtTime(i?.045:.10,now+duration*(entering?.42:.2));gain.gain.exponentialRampToValueAtTime(.0001,now+duration);if(i)source.connect(gain);else{source.connect(filter);filter.connect(gain);}gain.connect(audioContext.destination);source.start(now);source.stop(now+duration+.05);source.onended=()=>{source.disconnect();gain.disconnect();if(!i)filter.disconnect();};orbitVoices.push({source,gain});});
+  });
+  addEventListener('portfolio:resume',()=>{if(W.paused)stopOrbitSound();});
   async function syncAudio() {
     if (!audioContext) return;
     try { if (soundOn && !W.modal && !document.hidden) await audioContext.resume(); else await audioContext.suspend(); } catch {}
@@ -93,7 +108,7 @@
         const gain = audioContext.createGain(); gain.gain.value = .015; gain.connect(audioContext.destination);
         [110, 164.81, 220].forEach((frequency, i) => { const osc = audioContext.createOscillator(); osc.type = "sine"; osc.frequency.value = frequency; osc.detune.value = i * 3; osc.connect(gain); osc.start(); });
       }
-      soundOn = !soundOn; await syncAudio();
+      soundOn = !soundOn; if(!soundOn)stopOrbitSound();await syncAudio();
       sound.setAttribute("aria-pressed", String(soundOn)); $("soundLabel").textContent = soundOn ? "Sound on" : "Sound off";
     } catch { toast("Sound is unavailable in this browser."); }
   });
